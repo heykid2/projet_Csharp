@@ -7,12 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="7.0.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\BatailleNavale.DTO\BatailleNavale.DTO.csproj" />
+    <ProjectReference Include="..\NavalWar.DTO\NavalWar.DTO.csproj" />
+    <ProjectReference Include="..\NavalWar.Utils\NavalWar.Utils.csproj" />
   </ItemGroup>
 
 </Project>
