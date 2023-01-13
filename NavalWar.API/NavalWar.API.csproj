@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\NavalWar.Business\NavalWar.Business.csproj" />
     <ProjectReference Include="..\NavalWar.DTO\NavalWar.DTO.csproj" />
     <ProjectReference Include="..\NavalWar.Utils\NavalWar.Utils.csproj" />
   </ItemGroup>

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace NavalWar.DTO
 {
     /// <summary>
-    /// A player a 2 Game boards
+    /// A player has 2 Game boards
     /// 1 for his ships
     /// 1 for his strike/miss shots
     /// </summary>
@@ -23,10 +23,10 @@ namespace NavalWar.DTO
         public Player()
         {
             _personalBoard = Create2DBoard(_personalBoard);
-            _shotsBoard= Create2DBoard(_shotsBoard);    
+            _shotsBoard = Create2DBoard(_shotsBoard);
         }
 
-        private string[,] Create2DBoard(string[,]  board)
+        private string[,] Create2DBoard(string[,] board)
         {
             //string[,] board = new string[_boardSize,_boardSize];
             for (int row = 0; row < _boardSize; row++)

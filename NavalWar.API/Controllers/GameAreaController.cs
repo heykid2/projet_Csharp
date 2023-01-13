@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using NavalWar.DTO;
-using NavalWar.DTO.Area;
+using NavalWar.Business;
 using NavalWar.DTO.WebDTO;
 using NavalWar.Utils;
 
@@ -12,15 +11,27 @@ namespace NavalWar.API.Controllers
     [ApiController]
     public class GameAreaController : ControllerBase
     {
-        private GameArea _area = new GameArea();
+        private readonly IGameService _gameService;
+
+        public GameAreaController(IGameService gameService)
+        {
+            _gameService = gameService;
+        }
 
         // GET: api/<GameAreaController>
         [HttpGet]
         public IActionResult GetPlayerBoards()
         {
-            _area.AddPLayer();
+            try
+            {
+                _gameService.GetArea().AddPLayer();
+            }
+            catch (Exception e)
+            {
+                return BadRequest(e.Message);
+            }
             List<PlayerDTO> dto = new List<PlayerDTO>();
-            foreach (var player in _area.Players)
+            foreach (var player in _gameService.GetArea().Players)
             {
                 dto.Add(new PlayerDTO
                 {
