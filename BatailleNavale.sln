@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33205.214
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatailleNavale.API", "BatailleNavale\BatailleNavale.API.csproj", "{741475AA-F9E1-481F-BF7B-D17CB47EFD7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BatailleNavale.DTO", "BatailleNavale.DTO\BatailleNavale.DTO.csproj", "{8A052376-9AAF-4DDF-BF11-B0BA1776F835}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{741475AA-F9E1-481F-BF7B-D17CB47EFD7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{741475AA-F9E1-481F-BF7B-D17CB47EFD7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{741475AA-F9E1-481F-BF7B-D17CB47EFD7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{741475AA-F9E1-481F-BF7B-D17CB47EFD7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8A052376-9AAF-4DDF-BF11-B0BA1776F835}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8A052376-9AAF-4DDF-BF11-B0BA1776F835}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8A052376-9AAF-4DDF-BF11-B0BA1776F835}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8A052376-9AAF-4DDF-BF11-B0BA1776F835}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {808FFC44-2177-47AC-BDB4-0B8A02CDF06F}
+	EndGlobalSection
+EndGlobal
