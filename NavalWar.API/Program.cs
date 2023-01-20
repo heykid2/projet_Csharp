@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using NavalWar.Business;
+using NavalWar.DAL;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,6 +10,10 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+// EFCore options
+builder.Services.AddDbContext<NavalContext>(options =>
+    options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=<yourDatabase>;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
 // Add your dependencies
 builder.Services.AddScoped<IGameService, GameService>();

@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace NavalWar.DTO
+﻿namespace NavalWar.DTO
 {
     /// <summary>
     /// A player has 2 Game boards
