@@ -16,7 +16,6 @@ namespace NavalWar.DAL
         {
             modelBuilder.Entity<Player>()
                 .ToTable("Player")
-                .HasMany(p => p.Sessions)
                 ;
 
             modelBuilder.Entity<Session>()

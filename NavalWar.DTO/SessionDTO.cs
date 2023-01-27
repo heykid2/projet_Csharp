@@ -1,4 +1,4 @@
-﻿namespace NavalWar.DTO.WebDTO
+﻿namespace NavalWar.DTO
 {
     public class SessionDTO
     {

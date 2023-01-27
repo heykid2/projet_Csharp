@@ -1,11 +1,11 @@
 ﻿using NavalWar.DAL.Interfaces;
-using NavalWar.DTO.Area;
+using NavalWar.DAL.Models;
 
 namespace NavalWar.Business
 {
     public class GameService : IGameService
     {
-        private static GameArea _area = new GameArea();
+        private static Session _session = new Session();
         private readonly IPlayerRepository _playerRepository;
         public GameService(IPlayerRepository playerRepository)
         {

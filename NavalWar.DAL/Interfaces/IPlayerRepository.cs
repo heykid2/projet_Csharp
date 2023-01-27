@@ -1,4 +1,4 @@
-﻿using NavalWar.DTO.WebDTO;
+﻿using NavalWar.DTO;
 
 namespace NavalWar.DAL.Interfaces
 {

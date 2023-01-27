@@ -1,5 +1,6 @@
-﻿using NavalWar.DAL.Interfaces;
-using NavalWar.DTO.WebDTO;
+﻿using Microsoft.EntityFrameworkCore;
+using NavalWar.DAL.Interfaces;
+using NavalWar.DAL.Models;
 
 namespace NavalWar.DAL.Repositories
 {
@@ -12,12 +13,65 @@ namespace NavalWar.DAL.Repositories
             _context = context;
         }
 
-        public SessionDTO GetSessionById(int id)
+        public IEnumerable<Session> GetSessions()
+        {
+            return _context.Sessions.ToList();
+        }
+
+        public Session GetSessionById(int id)
         {
             try
             {
-                var session = _context.Sessions.FirstOrDefault(x => x.ID == id);
-                return session.ToDto();
+                return _context.Sessions.Find(id);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void InsertSession(Session session)
+        {
+            try
+            {
+                _context.Sessions.Add(session);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void DeleteSession(int id)
+        {
+            try
+            {
+                Session session = _context.Sessions.Find(id);
+                _context.Sessions.Remove(session);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void UpdateSession(Session session)
+        {
+            try
+            {
+                _context.Entry(session).State = EntityState.Modified;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public void Save()
+        {
+            try
+            {
+                _context.SaveChanges();
             }
             catch (Exception)
             {

@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NavalWar.Business;
 using NavalWar.DAL;
-using NavalWar.DTO.WebDTO;
+using NavalWar.DTO;
 using NavalWar.Utils;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
