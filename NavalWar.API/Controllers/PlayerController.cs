@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NavalWar.Business;
+using NavalWar.DAL.Models;
 
 namespace NavalWar.API.Controllers
 {
@@ -18,7 +19,7 @@ namespace NavalWar.API.Controllers
         [HttpGet]
         public IActionResult GetPlayers()
         {
-            return Ok(_playerService.GetPlayers());
+            return Ok(new List<Player>());
         }
 
     }

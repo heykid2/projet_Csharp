@@ -25,21 +25,21 @@ namespace NavalWar.API.Controllers
         {
             try
             {
-                _gameService.GetArea().AddPLayer();
+                //_gameService.GetArea().AddPLayer();
             }
             catch (Exception e)
             {
                 return BadRequest(e.Message);
             }
             List<PlayerDTO> dto = new List<PlayerDTO>();
-            foreach (var player in _gameService.GetArea().Players)
-            {
-                dto.Add(new PlayerDTO
-                {
-                    ShipBoard = player.GetPersonalBoard.ToListArray(),
-                    ShotBoard = player.GetShotsBoard.ToListArray()
-                });
-            }
+            //foreach (var player in _gameService.GetArea().Players)
+            //{
+            //    dto.Add(new PlayerDTO
+            //    {
+            //        ShipBoard = player.GetPersonalBoard.ToListArray(),
+            //        ShotBoard = player.GetShotsBoard.ToListArray()
+            //    });
+            //}
 
             return Ok(dto);
         }

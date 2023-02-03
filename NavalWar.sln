@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavalWar.Utils", "NavalWar.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavalWar.Business", "NavalWar.Business\NavalWar.Business.csproj", "{79EA75D8-34FA-475A-AC54-14BE08ABCF38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavalWar.DAL", "NavalWar.DAL\NavalWar.DAL.csproj", "{50848DAE-4DBC-4DE5-886A-62640B15E8FC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NavalWar.DAL", "NavalWar.DAL\NavalWar.DAL.csproj", "{50848DAE-4DBC-4DE5-886A-62640B15E8FC}"
+EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "navalwar.front", "NavalWar.Front\navalwar.front.esproj", "{DD2C40DE-CB66-4874-8745-CF204609504D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,12 @@ Global
 		{50848DAE-4DBC-4DE5-886A-62640B15E8FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50848DAE-4DBC-4DE5-886A-62640B15E8FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50848DAE-4DBC-4DE5-886A-62640B15E8FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD2C40DE-CB66-4874-8745-CF204609504D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD2C40DE-CB66-4874-8745-CF204609504D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD2C40DE-CB66-4874-8745-CF204609504D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DD2C40DE-CB66-4874-8745-CF204609504D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD2C40DE-CB66-4874-8745-CF204609504D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD2C40DE-CB66-4874-8745-CF204609504D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

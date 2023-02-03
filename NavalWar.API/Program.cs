@@ -16,7 +16,7 @@ builder.Services.AddDbContext<NavalContext>(options =>
     options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=<yourDatabase>;Trusted_Connection=True;MultipleActiveResultSets=true"));
 
 // Add your dependencies
-builder.Services.AddScoped<IGameService, GameService>();
+//builder.Services.AddScoped<IGameService, GameService>();
 
 var app = builder.Build();
 

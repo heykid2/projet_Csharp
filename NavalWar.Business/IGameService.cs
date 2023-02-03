@@ -1,9 +1,9 @@
-﻿using NavalWar.DTO.Area;
+﻿using NavalWar.DTO;
 
 namespace NavalWar.Business
 {
     public interface IGameService
     {
-        GameArea GetArea();
+
     }
 }

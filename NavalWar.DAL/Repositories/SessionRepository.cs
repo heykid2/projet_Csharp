@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NavalWar.DAL.Interfaces;
 using NavalWar.DAL.Models;
+using NavalWar.DTO;
 
 namespace NavalWar.DAL.Repositories
 {
@@ -77,6 +78,26 @@ namespace NavalWar.DAL.Repositories
             {
                 throw;
             }
+        }
+
+        IEnumerable<SessionDTO> ISessionRepository.GetSessions()
+        {
+            throw new NotImplementedException();
+        }
+
+        SessionDTO ISessionRepository.GetSessionById(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void InsertSession(SessionDTO session)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void UpdateSession(SessionDTO session)
+        {
+            throw new NotImplementedException();
         }
     }
 }

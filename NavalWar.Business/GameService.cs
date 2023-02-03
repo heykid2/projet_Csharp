@@ -11,10 +11,5 @@ namespace NavalWar.Business
         {
             _playerRepository = playerRepository;
         }
-
-        public GameArea GetArea()
-        {
-            return _area;
-        }
     }
 }
