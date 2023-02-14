@@ -1,16 +1,15 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-using NavalWar.DAL.Interfaces;
-using System.Numerics;
-
-namespace NavalWar.DAL.Models
+﻿namespace NavalWar.DAL.Models
 {
-    public class AircraftCarrier : IShip
+    public class AircraftCarrier : Ship
     {
-        private int _pv = 5;
-
-        public int GetPV()
+        public AircraftCarrier()
         {
-            return _pv;
+            PV = 5;
+        }
+        
+        public AircraftCarrier(int? id, int pv) : base(id, pv)
+        {
+            
         }
     }
 }

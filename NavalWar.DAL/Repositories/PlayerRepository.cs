@@ -1,12 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NavalWar.DAL.Models;
+using NavalWar.DAL.Interfaces;
 
 namespace NavalWar.DAL.Repositories
 {
-    public class PlayerRepository
+    public class PlayerRepository : IPlayerRepository
     {
-        private NavalContext _context;
-        private bool disposed = false;
+        private readonly NavalContext _context;
 
         public PlayerRepository(NavalContext _context)
         {
@@ -15,51 +15,36 @@ namespace NavalWar.DAL.Repositories
 
         public IEnumerable<Player> GetPlayers()
         {
-            return _context.Players.ToList();
+            //return _context.Players.ToList();
+            return null;
         }
 
-        public Player GetPlayerByID(int id)
+        public Player GetPlayerById(int id)
         {
-            return _context.Players.Find(id);
+            //return _context.Players.Find(id);
+            return null;
         }
 
         public void InsertPlayer(Player Player)
         {
-            _context.Players.Add(Player);
+            //_context.Players.Add(Player);
         }
 
         public void DeletePlayer(int id)
         {
-            Player Player = _context.Players.Find(id);
-            _context.Players.Remove(Player);
+            //Player Player = _context.Players.Find(id);
+            //_context.Players.Remove(Player);
         }
 
         public void UpdatePlayer(Player Player)
         {
-            _context.Entry(Player).State = EntityState.Modified;
+            //_context.Entry(Player).State = EntityState.Modified;
         }
 
         public void Save()
         {
             _context.SaveChanges();
         }
-
-        protected virtual void Dispose(bool disposing)
-        {
-            if (!disposed)
-            {
-                if (disposing)
-                {
-                    _context.Dispose();
-                }
-            }
-            disposed = true;
-        }
-
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
-        }
+        
     }
 }

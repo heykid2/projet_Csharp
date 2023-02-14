@@ -1,14 +1,15 @@
-﻿using NavalWar.DAL.Interfaces;
-
-namespace NavalWar.DAL.Models
+﻿namespace NavalWar.DAL.Models
 {
-    internal class Cruiser : IShip
+    public class Cruiser : Ship
     {
-        private int _pv = 4;
-
-        public int GetPV()
+        public Cruiser()
         {
-            return _pv;
+            PV = 4;
+        }
+
+        public Cruiser(int? id, int pv) : base(id, pv)
+        {
+            
         }
     }
 }

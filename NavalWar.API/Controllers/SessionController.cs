@@ -3,6 +3,7 @@ using NavalWar.Business;
 using NavalWar.DAL;
 using NavalWar.DTO;
 using NavalWar.Utils;
+using NavalWar.DAL.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,40 +11,25 @@ namespace NavalWar.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class GameAreaController : ControllerBase
+    public class SessionController : ControllerBase
     {
-        private readonly IGameService _gameService;
+        private readonly ISessionService _sessionService;
 
-        public GameAreaController(IGameService gameService)
+        public SessionController(ISessionService sessionService)
         {
-            _gameService = gameService;
+            _sessionService = sessionService;
         }
 
+        
         // GET: api/<GameAreaController>
         [HttpGet]
-        public IActionResult GetPlayerBoards()
+        public IActionResult GetSessions()
         {
-            try
-            {
-                _gameService.GetArea().AddPLayer();
-            }
-            catch (Exception e)
-            {
-                return BadRequest(e.Message);
-            }
-            List<PlayerDTO> dto = new List<PlayerDTO>();
-            foreach (var player in _gameService.GetArea().Players)
-            {
-                dto.Add(new PlayerDTO
-                {
-                    ShipBoard = player.GetPersonalBoard.ToListArray(),
-                    ShotBoard = player.GetShotsBoard.ToListArray()
-                });
-            }
+            List<SessionDTO> sessions = _sessionService.GetSessions();
 
-            return Ok(dto);
+            return Ok(sessions);
         }
-
+        /*
         // GET api/<GameAreaController>/5
         [HttpGet("{id}")]
         public string Get(int id)
@@ -68,5 +54,6 @@ namespace NavalWar.API.Controllers
         public void Delete(int id)
         {
         }
+        */
     }
 }

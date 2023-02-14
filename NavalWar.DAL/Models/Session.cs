@@ -1,35 +1,23 @@
-﻿using NavalWar.DTO;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace NavalWar.DAL.Models
 {
     public class Session
     {
-        public int ID { get; set; }
+        [Key]
+        public int? ID { get; set; }
 
-        List<Player> _players = new List<Player>();
+        public Player Player1 { get; set; }
+        
+        public Player Player2 { get; set; }
 
-        public SessionDTO ToDto()
+        public Player? Winner { get; set; }
+
+        public Session(int? id, Player player1, Player player2)
         {
-            return new SessionDTO();
-        }
-
-        public List<Player> Players
-        {
-            get { return _players; }
-        }
-
-        public bool isGameFull()
-        {
-            return _players.Count == 2;
-        }
-
-        public void AddPLayer()
-        {
-            if (isGameFull())
-            {
-                throw new Exception("Game is full (Max 2 players)");
-            }
-            _players.Add(new Player());
+            ID = id;
+            Player1 = player1;
+            Player2 = player2;
         }
     }
 }

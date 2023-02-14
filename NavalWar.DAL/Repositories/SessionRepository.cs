@@ -4,7 +4,7 @@ using NavalWar.DAL.Models;
 
 namespace NavalWar.DAL.Repositories
 {
-    internal class SessionRepository : ISessionRepository
+    public class SessionRepository : ISessionRepository
     {
         private readonly NavalContext _context;
 
@@ -15,68 +15,35 @@ namespace NavalWar.DAL.Repositories
 
         public IEnumerable<Session> GetSessions()
         {
-            return _context.Sessions.ToList();
+            //return _context.Sessions.ToList();
+            return null;
         }
 
         public Session GetSessionById(int id)
         {
-            try
-            {
-                return _context.Sessions.Find(id);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            //return _context.Sessions.Find(id);
+            return null;
         }
 
         public void InsertSession(Session session)
         {
-            try
-            {
-                _context.Sessions.Add(session);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            //_context.Sessions.Add(session);
         }
 
         public void DeleteSession(int id)
         {
-            try
-            {
-                Session session = _context.Sessions.Find(id);
-                _context.Sessions.Remove(session);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            //Session session = _context.Sessions.Find(id);
+            //_context.Sessions.Remove(session);
         }
 
         public void UpdateSession(Session session)
         {
-            try
-            {
-                _context.Entry(session).State = EntityState.Modified;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            //_context.Entry(session).State = EntityState.Modified;
         }
 
         public void Save()
         {
-            try
-            {
-                _context.SaveChanges();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            //_context.SaveChanges();
         }
     }
 }

@@ -7,9 +7,9 @@ namespace NavalWar.API.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-        private readonly IPlayerService _playerService;
+        private readonly PlayerService _playerService;
 
-        public PlayerController(IPlayerService playerService)
+        public PlayerController(PlayerService playerService)
         {
             _playerService = playerService;
         }

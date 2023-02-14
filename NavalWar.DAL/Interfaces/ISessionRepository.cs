@@ -1,14 +1,14 @@
-﻿using NavalWar.DTO;
+﻿using NavalWar.DAL.Models;
 
 namespace NavalWar.DAL.Interfaces
 {
     public interface ISessionRepository
     {
-        IEnumerable<SessionDTO> GetSessions();
-        SessionDTO GetSessionById(int id);
-        void InsertSession(SessionDTO session);
-        void DeleteSession(int id);
-        void UpdateSession(SessionDTO session);
-        void Save();
+        public IEnumerable<Session> GetSessions();
+        public Session GetSessionById(int id);
+        public void InsertSession(Session session);
+        public void DeleteSession(int id);
+        public void UpdateSession(Session session);
+        public void Save();
     }
 }

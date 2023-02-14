@@ -1,14 +1,10 @@
-﻿using NavalWar.DAL.Interfaces;
-
-namespace NavalWar.DAL.Models
+﻿namespace NavalWar.DAL.Models
 {
-    internal class Destroyer : IShip
+    public class Destroyer : Ship
     {
-        private int _pv = 3;
-
-        public int GetPV()
+        public Destroyer()
         {
-            return _pv;
+            PV = 3;
         }
     }
 }
