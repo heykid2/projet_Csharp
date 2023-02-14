@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using NavalWar.Business;
 using NavalWar.DAL;
 using NavalWar.DAL.Interfaces;
@@ -15,7 +16,7 @@ builder.Services.AddSwaggerGen();
 
 // EFCore options
 builder.Services.AddDbContext<NavalContext>(options =>
-    options.UseSqlServer("Server=tcp:navalwar-2023.database.windows.net,1433;Initial Catalog=DatabaseNavalWar;Persist Security Info=False;User ID=identifiantdeladmin;Password=motdepassedeladmin!0;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("NavalContext")));
 
 // Add your dependencies
 builder.Services.AddScoped<IUserService, UserService>();
