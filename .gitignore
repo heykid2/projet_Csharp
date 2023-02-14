@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ne plus suivre appsettings.json pour ne pas leak le mdp du serveur SQL (faire gaffe a pas leak si on doit le modifier)
+NavalWar.API/appsettings.json
