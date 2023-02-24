@@ -8,12 +8,9 @@ export const Login = () => {
     const connectPlayer = (e) => {
         e.preventDefault();
 
+        //TODO: mettre le bon url
         postData('http://cabe0232.odns.fr/webdev-api/order', {
-            id: Math.floor(Math.random() * 10000000000),
-            description: getDetail(foods, menus),
-            price: Math.round((sum(foods) + sum(menus)) * 100) / 100,
-            date: new Date(),
-            client: firstname + " " + lastname + " (" + tel + ")"
+            pseudo: pseudo
         })
             .then((data) => {
                 console.log(data); // JSON data parsed by `data.json()` call
@@ -46,7 +43,7 @@ export const Login = () => {
         });
 
         if (response.status < 300) {
-            console.log("commande enregistrée");
+            console.log("player créé");
         }
 
         return response.text(); // parses JSON response into native JavaScript objects
