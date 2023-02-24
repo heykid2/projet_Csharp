@@ -10,6 +10,7 @@ namespace NavalWar.DAL
         }
         public DbSet<User> Users { get; set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>()
@@ -17,6 +18,15 @@ namespace NavalWar.DAL
                 .HasMany(u => u.Players)
                 .WithOne(p => p.User)
                 ;
+            modelBuilder.Entity<Player>()
+                .ToTable("Player");
+
+            modelBuilder.Entity<Player>()
+                .HasOne(p => p.isUser)
+                .WithMany(s => s.Players);
+
+            modelBuilder.Entity<Player>()
+                .HasOne(p => p.ofSession);
         }
     }
 }

@@ -2,18 +2,18 @@
 {
     public class PlayerDTO
     {
-        public int IDUser { get; set; }
+        public UserDTO User { get; set; }
 
-        public int IDSession { get; set; }
+        public SessionDTO Session { get; set; }
 
         public List<ShipDTO> Ships { get; set; }
 
         public List<ShotDTO> Shots { get; set; }
 
-        public PlayerDTO(int idUser, int idSession)
+        public PlayerDTO(UserDTO newUser, SessionDTO newSession)
         {
-            IDUser = idUser;
-            IDSession = idSession;
+            User = newUser;
+            Session = newSession;
         }
     }
 }

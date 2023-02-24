@@ -26,7 +26,7 @@ namespace NavalWar.DAL.ExtensionMethods
 
         public static PlayerDTO ToDTO(this Player player)
         {
-            return new PlayerDTO(player.UserId, player.SessionId);
+            return new PlayerDTO(player.isUser.ToDTO(), player.ofSession.ToDTO());
         }
 
         public static Player ToModel(this PlayerDTO player)

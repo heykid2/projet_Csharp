@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace NavalWar.DAL.Models
 {
-    internal class Map
+    public class Map
     {
     }
 }

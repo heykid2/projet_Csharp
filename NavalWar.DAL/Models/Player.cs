@@ -2,17 +2,21 @@
 
 namespace NavalWar.DAL.Models
 {
-    [PrimaryKey(nameof(UserId), nameof(SessionId))]
+    //[PrimaryKey(nameof(User), nameof(Session))]
     public class Player
     {
-        public int UserId { get; set; }
+        public User isUser { get; set; }
+        
+        //public int UserId { get; set; }
 
-        public int SessionId { get; set; }
+        public Session ofSession { get; set; }
+
+        public Map HasMap { get; set; }
 
         public List<Ship> Ships { get; set; }
 
         public List<Shot> Shots { get; set; }
 
-        public User User { get; set; }
+
     }
 }
