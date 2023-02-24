@@ -6,5 +6,6 @@ namespace NavalWar.DAL.Interfaces
     {
         void AddUser(UserDTO user);
         List<UserDTO> GetUsers();
+        UserDTO GetUserByUsername(string username);
     }
 }

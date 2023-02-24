@@ -24,5 +24,11 @@ namespace NavalWar.Business
             List<User> users = (List<User>)_userRepository.GetUsers();
             return users.Select(p => p.ToDTO()).ToList();
         }
+
+        public UserDTO GetUserByUsername(string username)
+        {
+            User user = _userRepository.GetUserByUsername(username);
+            return user.ToDTO();
+        }
     }
 }

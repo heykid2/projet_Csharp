@@ -18,9 +18,9 @@ namespace NavalWar.DAL.Repositories
             return _context.Users.ToList();
         }
 
-        public User GetUserById(int id)
-        {
-            return _context.Users.Find(id);
+        public User? GetUserByUsername(string username)
+        {      
+            return _context.Users.Find(username);
         }
 
         public void InsertUser(User user)
@@ -32,7 +32,11 @@ namespace NavalWar.DAL.Repositories
         public void DeleteUser(int id)
         {
             var user = _context.Users.Find(id);
-            _context.Users.Remove(user);
+            if (user != null)
+            {
+                _context.Users.Remove(user);
+                Save();
+            }
         }
 
         public void UpdateUser(User user)

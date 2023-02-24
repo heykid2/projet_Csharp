@@ -18,34 +18,27 @@ namespace NavalWar.API.Controllers
             _userService = userService;
         }
 
-        // GET: api/<GameAreaController>
-        [HttpGet]
-        public IActionResult GetPlayerBoards()
+        // GET api/<UserController>/wololo
+        [HttpGet("{username}")]
+        public IActionResult Get(string username)
         {
-            return Ok(_userService.GetUsers());
+            return Ok(_userService.GetUserByUsername(username));
         }
 
-        // GET api/<GameAreaController>/5
-        [HttpGet("{id}")]
-        public string Get(int id)
-        {
-            return "value";
-        }
-
-        // POST api/<GameAreaController>
+        // POST api/<UserController>
         [HttpPost]
-        public async void Post([FromBody] UserDTO userDTO)
+        public void Post([FromBody] UserDTO userDTO)
         {
             _userService.AddUser(userDTO);
         }
 
-        // PUT api/<GameAreaController>/5
+        // PUT api/<UserController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/<GameAreaController>/5
+        // DELETE api/<UserController>/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
