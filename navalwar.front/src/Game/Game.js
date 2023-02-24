@@ -24,8 +24,8 @@ export const Game = () => {
         { id: 5, name: 'Patrol Boat', size: 2, orientation: 'horizontal', row: -1, col: -1, cells: [] }
     ]);
 
-    let currentShipId = -1;
     const [shipToPlace, setShipToPlace] = useState([]);
+    const [currentShipId, setCurrentShipId] = useState([]);
 
     //toucher/couler
     /*const handleClick = (rowIndex, colIndex) => {
@@ -49,18 +49,20 @@ export const Game = () => {
             newGrid[rowIndex][colIndex] = 'X';
         }
         setGrid(newGrid);
-    };
+    };*/
 
     const findShipIndex = (rowIndex, colIndex) => {
         return ships.findIndex(ship =>
             ship.cells && ship.cells.some(([row, col]) => row === rowIndex && col === colIndex)
         );
-    };*/
+    };
 
     //placer navire
     const handlePlaceShip = (rowIndex, colIndex) => {
-        if (currentShipId !== -1) {
+        if (currentShipId != -1) {
             const ship = ships.find(s => s.id === currentShipId);
+            ship.row = rowIndex;
+            ship.col = colIndex;
             const isShipVertical = ship.orientation === 'vertical';
             for (let i = 0; i < ship.size; i++) {
                 const newRowIndex = isShipVertical ? rowIndex + i : rowIndex;
@@ -85,9 +87,24 @@ export const Game = () => {
         }
     };
 
+    const handleRotateShip = () => {
+        const ship = ships.find(s => s.id === currentShipId);
+        const isShipVertical = ship.orientation === 'vertical';
+        const newOrientation = isShipVertical ? 'horizontal' : 'vertical';
+        ship.orientation = newOrientation;
+        for (let i = 0; i < ship.cells.length; i++) {
+            const row = ship.cells[i][0];
+            const col = ship.cells[i][1];
+            const newGrid = [...grid];
+            newGrid[row][col] = 'O';
+            setGrid(newGrid);
+        }
+        handlePlaceShip(ship.row, ship.col);
+    };
+
     const shipBtns = ships.map(ship => {
         return (
-            <button key={ship.id} onClick={() => currentShipId = ship.id}> {ship.name} </button>
+            <button key={ship.id} onClick={() => setCurrentShipId(ship.id)}> {ship.name} </button>
         );
     });
 
@@ -119,6 +136,7 @@ export const Game = () => {
             <div>
                 { shipBtns }
             </div>
+            <button onClick={ () => handleRotateShip() }>Rotate Ship</button>
         </>
     );
 };
