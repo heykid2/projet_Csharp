@@ -131,7 +131,13 @@ export const Game = () => {
         }
     };
 
-    const shipBtns = ships.map(ship => {
+    const shipsBtns = ships.map(ship => {
+        return (
+            <button key={ship.id} onClick={() => setCurrentShipId(ship.id)}> {ship.name} </button>
+        );
+    });
+
+    const placedShipsBtns = placedShips.map(ship => {
         return (
             <button key={ship.id} onClick={() => setCurrentShipId(ship.id)}> {ship.name} </button>
         );
@@ -163,7 +169,10 @@ export const Game = () => {
                 ))}
             </div>
             <div>
-                { shipBtns }
+                <h2>A placer</h2>
+                { shipsBtns }
+                <h2>Sur le plateau</h2>
+                { placedShipsBtns }
             </div>
             <button onClick={() => handleRotateShip()}>Rotate Ship</button>
             <button onClick={() => handleRemoveShip()}>Remove Ship</button>
