@@ -24,7 +24,8 @@ export const Game = () => {
         { id: 5, name: 'Patrol Boat', size: 2, orientation: 'horizontal', row: -1, col: -1, cells: [] }
     ]);
 
-    const [shipToPlace, setShipToPlace] = useState([]);
+    const [placedShips, setPlacedShips] = useState([]);
+
     const [currentShipId, setCurrentShipId] = useState([]);
 
     //toucher/couler
@@ -57,38 +58,46 @@ export const Game = () => {
         );
     };
 
-    //placer navire
     const handlePlaceShip = (rowIndex, colIndex) => {
         if (currentShipId != -1) {
-            const ship = ships.find(s => s.id === currentShipId);
-            ship.row = rowIndex;
-            ship.col = colIndex;
-            const isShipVertical = ship.orientation === 'vertical';
-            for (let i = 0; i < ship.size; i++) {
-                const newRowIndex = isShipVertical ? rowIndex + i : rowIndex;
-                const newColIndex = isShipVertical ? colIndex : colIndex + i;
-                if (newRowIndex >= grid.length || newColIndex >= grid[0].length) {
-                    alert('Cannot place ship outside the grid!');
-                    return;
-                }
-                if (grid[newRowIndex][newColIndex] === 'S') {
-                    alert('Cannot place ship on top of another ship!');
-                    return;
-                }
-                ship.cells.push([newRowIndex, newColIndex]);
+            const ship = ships[currentShipId - 1];
+            if (ship !== undefined) {
+                placeShip(rowIndex, colIndex, ship);
+                placedShips[currentShipId - 1] = ship;
+                delete ships[currentShipId - 1];
             }
-            for (let i = 0; i < ship.size; i++) {
-                const newRowIndex = isShipVertical ? rowIndex + i : rowIndex;
-                const newColIndex = isShipVertical ? colIndex : colIndex + i;
-                const newGrid = [...grid];
-                newGrid[newRowIndex][newColIndex] = 'S';
-                setGrid(newGrid);
+        }
+    }
+
+    //placer navire
+    const placeShip = (rowIndex, colIndex, ship) => {
+        ship.row = rowIndex;
+        ship.col = colIndex;
+        const isShipVertical = ship.orientation === 'vertical';
+        for (let i = 0; i < ship.size; i++) {
+            const newRowIndex = isShipVertical ? rowIndex + i : rowIndex;
+            const newColIndex = isShipVertical ? colIndex : colIndex + i;
+            if (newRowIndex >= grid.length || newColIndex >= grid[0].length) {
+                alert('Cannot place ship outside the grid!');
+                return;
             }
+            if (grid[newRowIndex][newColIndex] === 'S') {
+                alert('Cannot place ship on top of another ship!');
+                return;
+            }
+            ship.cells.push([newRowIndex, newColIndex]);
+        }
+        for (let i = 0; i < ship.size; i++) {
+            const newRowIndex = isShipVertical ? rowIndex + i : rowIndex;
+            const newColIndex = isShipVertical ? colIndex : colIndex + i;
+            const newGrid = [...grid];
+            newGrid[newRowIndex][newColIndex] = 'S';
+            setGrid(newGrid);
         }
     };
 
     const handleRotateShip = () => {
-        const ship = ships.find(s => s.id === currentShipId);
+        const ship = placedShips[currentShipId - 1];
         const isShipVertical = ship.orientation === 'vertical';
         const newOrientation = isShipVertical ? 'horizontal' : 'vertical';
         ship.orientation = newOrientation;
@@ -99,7 +108,27 @@ export const Game = () => {
             newGrid[row][col] = 'O';
             setGrid(newGrid);
         }
-        handlePlaceShip(ship.row, ship.col);
+        placeShip(ship.row, ship.col, ship);
+    };
+
+    const handleRemoveShip = () => {
+        const ship = placedShips[currentShipId - 1];
+
+        if (ship !== undefined) {
+            const isShipVertical = ship.orientation === 'vertical';
+            const newOrientation = isShipVertical ? 'horizontal' : 'vertical';
+            ship.orientation = newOrientation;
+            for (let i = 0; i < ship.cells.length; i++) {
+                const row = ship.cells[i][0];
+                const col = ship.cells[i][1];
+                const newGrid = [...grid];
+                newGrid[row][col] = 'O';
+                setGrid(newGrid);
+            }
+
+            ships[currentShipId - 1] = ship;
+            delete placedShips[currentShipId - 1];
+        }
     };
 
     const shipBtns = ships.map(ship => {
@@ -136,7 +165,8 @@ export const Game = () => {
             <div>
                 { shipBtns }
             </div>
-            <button onClick={ () => handleRotateShip() }>Rotate Ship</button>
+            <button onClick={() => handleRotateShip()}>Rotate Ship</button>
+            <button onClick={() => handleRemoveShip()}>Remove Ship</button>
         </>
     );
 };
