@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using NavalWar.DTO;
 
 namespace NavalWar.Business
 {
     public interface IPlayerService
     {
+        void AddPlayer(PlayerDTO user);
+        List<PlayerDTO> GetPlayers();
     }
 }

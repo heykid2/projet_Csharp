@@ -2,8 +2,18 @@
 {
     public class PlayerDTO
     {
-        public List<List<string>> ShipBoard { get; set; }
-        public List<List<string>> ShotBoard { get; set; }
+        public UserDTO User { get; set; }
 
+        public SessionDTO Session { get; set; }
+
+        public List<ShipDTO> Ships { get; set; }
+
+        public List<ShotDTO> Shots { get; set; }
+
+        public PlayerDTO(UserDTO newUser, SessionDTO newSession)
+        {
+            User = newUser;
+            Session = newSession;
+        }
     }
 }

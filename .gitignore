@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# Ne plus suivre appsettings.json pour ne pas leak le mdp du serveur SQL (faire gaffe a pas leak si on doit le modifier)
+# J'ai du faire `git update-index --skip-worktree NavalWar.API/appsettings.json` pour dire a git de ne plus le suivre
+# Faire `git update-index --no-skip-worktree NavalWar.API/appsettings.json` pour annuler
+NavalWar.API/appsettings.json
+/NavalWar.API/appsettings.json

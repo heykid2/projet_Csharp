@@ -1,12 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace NavalWar.DAL.Models
 {
-    internal class User
+    public class User
     {
+        [Key]
+        public string Name { get; set; }
+
+        public List<Player>? Players { get; set; }
+
+        public User(string name)
+        {
+            Name = name;
+        }
     }
 }

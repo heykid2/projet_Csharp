@@ -8,9 +8,9 @@ namespace NavalWar.API.Controllers
     [ApiController]
     public class PlayerController : ControllerBase
     {
-        private readonly IPlayerService _playerService;
+        private readonly PlayerService _playerService;
 
-        public PlayerController(IPlayerService playerService)
+        public PlayerController(PlayerService playerService)
         {
             _playerService = playerService;
         }
@@ -21,6 +21,36 @@ namespace NavalWar.API.Controllers
         {
             return Ok(new List<Player>());
         }
+
+        // POST: api/<PlayerController>/
+
+
+        /*
+// GET api/<GameAreaController>/5
+[HttpGet("{id}")]
+public string Get(int id)
+{
+    return "value";
+}
+
+// POST api/<GameAreaController>
+[HttpPost]
+public void Post([FromBody] string value)
+{
+}
+
+// PUT api/<GameAreaController>/5
+[HttpPut("{id}")]
+public void Put(int id, [FromBody] string value)
+{
+}
+
+// DELETE api/<GameAreaController>/5
+[HttpDelete("{id}")]
+public void Delete(int id)
+{
+}
+*/
 
     }
 }

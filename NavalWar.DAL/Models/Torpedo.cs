@@ -1,14 +1,10 @@
-﻿using NavalWar.DAL.Interfaces;
-
-namespace NavalWar.DAL.Models
+﻿namespace NavalWar.DAL.Models
 {
-    internal class Torpedo : IShip
+    internal class Torpedo : Ship
     {
-        private int _pv = 2;
-
-        public int GetPV()
+        public Torpedo()
         {
-            return _pv;
+            PV = 2;
         }
     }
 }

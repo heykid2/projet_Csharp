@@ -8,19 +8,25 @@ namespace NavalWar.DAL
         public NavalContext(DbContextOptions<NavalContext> options) : base(options)
         {
         }
+        public DbSet<User> Users { get; set; }
 
-        public DbSet<Player> Players { get; set; }
-        public DbSet<Session> Sessions { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .ToTable("User")
+                .HasMany(u => u.Players)
+                .WithOne(p => p.User)
+                ;
             modelBuilder.Entity<Player>()
-                .ToTable("Player")
-                ;
+                .ToTable("Player");
 
-            modelBuilder.Entity<Session>()
-                .ToTable("Session")
-                ;
+            modelBuilder.Entity<Player>()
+                .HasOne(p => p.isUser)
+                .WithMany(s => s.Players);
+
+            modelBuilder.Entity<Player>()
+                .HasOne(p => p.ofSession);
         }
     }
 }

@@ -1,14 +1,14 @@
-﻿using NavalWar.DTO;
+﻿using NavalWar.DAL.Models;
 
 namespace NavalWar.DAL.Interfaces
 {
-    public interface IPlayerRepository : IDisposable
+    public interface IPlayerRepository
     {
-        public IEnumerable<PlayerDTO> GetPlayers();
-        public PlayerDTO GetPlayerById(int id);
-        public void InsertPlayer(PlayerDTO player);
+        public IEnumerable<Player> GetPlayers();
+        public Player GetPlayerById(int id);
+        public void InsertPlayer(Player player);
         public void DeletePlayer(int id);
-        public void UpdatePlayer(PlayerDTO player);
+        public void UpdatePlayer(Player player);
         public void Save();
     }
 }
