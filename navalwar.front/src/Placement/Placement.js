@@ -1,7 +1,8 @@
-import './Game.css';
+import './Placement.css';
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
-export const Game = () => {
+export const Placement = () => {
     const [grid, setGrid] = useState([
         ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
         ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O'],
@@ -27,36 +28,6 @@ export const Game = () => {
     const [placedShips, setPlacedShips] = useState([]);
 
     const [currentShipId, setCurrentShipId] = useState([]);
-
-    //toucher/couler
-    /*const handleClick = (rowIndex, colIndex) => {
-        const newGrid = [...grid];
-        const shipIndex = findShipIndex(rowIndex, colIndex);
-        if (shipIndex >= 0) {
-            const { size, orientation, row, col } = ships[shipIndex];
-            const newShip = { name: ships[shipIndex].name, size, orientation, row, col };
-            const isShipVertical = orientation === 'vertical';
-            const newShipCells = [];
-            for (let i = 0; i < size; i++) {
-                const newRowIndex = isShipVertical ? row + i : row;
-                const newColIndex = isShipVertical ? col : col + i;
-                newShipCells.push([newRowIndex, newColIndex]);
-                newGrid[newRowIndex][newColIndex] = 'S';
-            }
-            const newShips = [...ships];
-            newShips[shipIndex] = { ...newShip, cells: newShipCells };
-            setShips(newShips);
-        } else {
-            newGrid[rowIndex][colIndex] = 'X';
-        }
-        setGrid(newGrid);
-    };*/
-
-    const findShipIndex = (rowIndex, colIndex) => {
-        return ships.findIndex(ship =>
-            ship.cells && ship.cells.some(([row, col]) => row === rowIndex && col === colIndex)
-        );
-    };
 
     const handlePlaceShip = (rowIndex, colIndex) => {
         if (currentShipId != -1) {
@@ -136,7 +107,7 @@ export const Game = () => {
 
     const shipsBtns = ships.map(ship => {
         return (
-            <button key={ship.id} onClick={() => setCurrentShipId(ship.id)}> {ship.name} </button>
+            <button id="button" key={ship.id} onClick={() => setCurrentShipId(ship.id)}> {ship.name} </button>
         );
     });
 
@@ -147,7 +118,7 @@ export const Game = () => {
     });
 
     return (
-        <div class="game-container">
+        <div className="game-container">
             <div>
                 {grid.map((row, rowIndex) => (
                     <div key={rowIndex} style={{ display: 'flex' }}>
@@ -171,6 +142,28 @@ export const Game = () => {
                     </div>
                 ))}
             </div>
+            <div className="buttons">
+                <h2>A placer</h2>
+                { shipsBtns }
+                <h2>Sur le plateau</h2>
+                {placedShipsBtns}
+                <div className="remove-rotate">
+                    <button id="button" onClick={() => handleRotateShip()}>Rotate Ship</button>
+                    <button id="button" onClick={() => handleRemoveShip()}>Remove Ship</button>
+                    <Link to={allShipsPlaced(ships) ? '/game' : '#'} >
+                        <button id="button" onClick={() => console.log("game") }>C'est parti !</button>
+                    </Link>
+                </div>
+            </div>
         </div>
     );
 };
+
+function allShipsPlaced(ships) {
+    for (let i = 0; i < ships.length; ++i) {
+        if (ships[i] !== undefined) {
+            return false;
+        }
+    }
+    return true;
+}

@@ -1,0 +1,19 @@
+.game-container {
+    display: flex;
+    flex-direction: row;
+    margin-left: 300px;
+    margin-top: 50px;
+    justify-items: center;
+}
+
+.buttons {
+    margin-left: 50px;
+}
+
+.remove-rotate {
+    margin-top: 300px;
+}
+
+#button {
+    margin: 10px;
+}

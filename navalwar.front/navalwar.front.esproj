@@ -13,6 +13,5 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="src\Login\" />
-    <Folder Include="src\Game\" />
   </ItemGroup>
 </Project>
