@@ -63,8 +63,6 @@ export const Game = () => {
             const ship = ships[currentShipId - 1];
             if (ship !== undefined) {
                 placeShip(rowIndex, colIndex, ship);
-                placedShips[currentShipId - 1] = ship;
-                delete ships[currentShipId - 1];
             }
         }
     }
@@ -93,6 +91,11 @@ export const Game = () => {
             const newGrid = [...grid];
             newGrid[newRowIndex][newColIndex] = 'S';
             setGrid(newGrid);
+        }
+
+        if (ships[currentShipId - 1] !== undefined) {
+            placedShips[currentShipId - 1] = ship;
+            delete ships[currentShipId - 1];
         }
     };
 
@@ -139,12 +142,12 @@ export const Game = () => {
 
     const placedShipsBtns = placedShips.map(ship => {
         return (
-            <button key={ship.id} onClick={() => setCurrentShipId(ship.id)}> {ship.name} </button>
+            <button id="button" key={ship.id} onClick={() => setCurrentShipId(ship.id)}> {ship.name} </button>
         );
     });
 
     return (
-        <>
+        <div class="game-container">
             <div>
                 {grid.map((row, rowIndex) => (
                     <div key={rowIndex} style={{ display: 'flex' }}>
@@ -168,14 +171,16 @@ export const Game = () => {
                     </div>
                 ))}
             </div>
-            <div>
+            <div class="buttons">
                 <h2>A placer</h2>
                 { shipsBtns }
                 <h2>Sur le plateau</h2>
-                { placedShipsBtns }
+                {placedShipsBtns}
+                <div class="remove-rotate">
+                    <button id="button" onClick={() => handleRotateShip()}>Rotate Ship</button>
+                    <button id="button" onClick={() => handleRemoveShip()}>Remove Ship</button>
+                </div>
             </div>
-            <button onClick={() => handleRotateShip()}>Rotate Ship</button>
-            <button onClick={() => handleRemoveShip()}>Remove Ship</button>
-        </>
+        </div>
     );
 };
