@@ -48,11 +48,11 @@ export const Placement = () => {
             const newColIndex = isShipVertical ? colIndex : colIndex + i;
             if (newRowIndex >= grid.length || newColIndex >= grid[0].length) {
                 alert('Cannot place ship outside the grid!');
-                return;
+                return false;
             }
             if (grid[newRowIndex][newColIndex] === 'S') {
                 alert('Cannot place ship on top of another ship!');
-                return;
+                return false;
             }
             ship.cells.push([newRowIndex, newColIndex]);
         }
@@ -68,6 +68,8 @@ export const Placement = () => {
             placedShips[currentShipId - 1] = ship;
             delete ships[currentShipId - 1];
         }
+
+        return true;
     };
 
     const handleRotateShip = () => {
@@ -75,14 +77,16 @@ export const Placement = () => {
         const isShipVertical = ship.orientation === 'vertical';
         const newOrientation = isShipVertical ? 'horizontal' : 'vertical';
         ship.orientation = newOrientation;
-        for (let i = 0; i < ship.cells.length; i++) {
-            const row = ship.cells[i][0];
-            const col = ship.cells[i][1];
-            const newGrid = [...grid];
-            newGrid[row][col] = 'O';
-            setGrid(newGrid);
+
+        if (placeShip(ship.row, ship.col, ship) == true) {
+            for (let i = 0; i < ship.cells.length; i++) {
+                const row = ship.cells[i][0];
+                const col = ship.cells[i][1];
+                const newGrid = [...grid];
+                newGrid[row][col] = 'O';
+                setGrid(newGrid);
+            }
         }
-        placeShip(ship.row, ship.col, ship);
     };
 
     const handleRemoveShip = () => {

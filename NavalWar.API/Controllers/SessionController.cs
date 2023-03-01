@@ -13,22 +13,22 @@ namespace NavalWar.API.Controllers
     [ApiController]
     public class SessionController : ControllerBase
     {
-        private readonly ISessionService _sessionService;
+        //private readonly ISessionService _sessionService;
 
-        public SessionController(ISessionService sessionService)
-        {
-            _sessionService = sessionService;
-        }
+        //public SessionController(ISessionService sessionService)
+        //{
+        //    _sessionService = sessionService;
+        //}
 
         
-        // GET: api/<GameAreaController>
-        [HttpGet]
-        public IActionResult GetSessions()
-        {
-            List<SessionDTO> sessions = _sessionService.GetSessions();
+        //// GET: api/<GameAreaController>
+        //[HttpGet]
+        //public IActionResult GetSessions()
+        //{
+        //    List<SessionDTO> sessions = _sessionService.GetSessions();
 
-            return Ok(sessions);
-        }
+        //    return Ok(sessions);
+        //}
         /*
         // GET api/<GameAreaController>/5
         [HttpGet("{id}")]

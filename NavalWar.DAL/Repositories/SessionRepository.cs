@@ -47,15 +47,15 @@ namespace NavalWar.DAL.Repositories
             //_context.SaveChanges();
         }
 
-        IEnumerable<SessionDTO> ISessionRepository.GetSessions()
-        {
-            throw new NotImplementedException();
-        }
+        //IEnumerable<SessionDTO> ISessionRepository.GetSessions()
+        //{
+        //    throw new NotImplementedException();
+        //}
 
-        SessionDTO ISessionRepository.GetSessionById(int id)
-        {
-            throw new NotImplementedException();
-        }
+        //SessionDTO ISessionRepository.GetSessionById(int id)
+        //{
+        //    throw new NotImplementedException();
+        //}
 
         public void InsertSession(SessionDTO session)
         {

@@ -11,37 +11,37 @@ namespace NavalWar.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly IUserService _userService;
+        //private readonly IUserService _userService;
 
-        public UserController(IUserService userService)
-        {
-            _userService = userService;
-        }
+        //public UserController(IUserService userService)
+        //{
+        //    _userService = userService;
+        //}
 
-        // GET api/<UserController>/wololo
-        [HttpGet("{username}")]
-        public IActionResult Get(string username)
-        {
-            return Ok(_userService.GetUserByUsername(username));
-        }
+        //// GET api/<UserController>/wololo
+        //[HttpGet("{username}")]
+        //public IActionResult Get(string username)
+        //{
+        //    return Ok(_userService.GetUserByUsername(username));
+        //}
 
-        // POST api/<UserController>
-        [HttpPost]
-        public void Post([FromBody] UserDTO userDTO)
-        {
-            _userService.AddUser(userDTO);
-        }
+        //// POST api/<UserController>
+        //[HttpPost]
+        //public void Post([FromBody] UserDTO userDTO)
+        //{
+        //    _userService.AddUser(userDTO);
+        //}
 
-        // PUT api/<UserController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/<UserController>/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/<UserController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/<UserController>/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

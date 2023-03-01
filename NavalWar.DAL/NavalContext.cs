@@ -16,7 +16,7 @@ namespace NavalWar.DAL
             modelBuilder.Entity<User>()
                 .ToTable("User")
                 .HasMany(u => u.Players)
-                .WithOne(p => p.User)
+                //.WithOne(p => p.User)
                 ;
             modelBuilder.Entity<Player>()
                 .ToTable("Player");
