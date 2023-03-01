@@ -15,139 +15,22 @@ export const Game = () => {
         ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O']
     ]);
 
-    //TODO: get les bateaux avec l'api
-    const [ships] = useState([
-        { id: 1, name: 'Carrier', size: 5, orientation: 'horizontal', row: -1, col: -1, cells: [] },
-        { id: 2, name: 'Battleship', size: 4, orientation: 'vertical', row: -1, col: -1, cells: [] },
-        { id: 3, name: 'Destroyer', size: 3, orientation: 'horizontal', row: -1, col: -1, cells: [] },
-        { id: 4, name: 'Submarine', size: 3, orientation: 'vertical', row: -1, col: -1, cells: [] },
-        { id: 5, name: 'Patrol Boat', size: 2, orientation: 'horizontal', row: -1, col: -1, cells: [] }
-    ]);
-
-    const [placedShips, setPlacedShips] = useState([]);
-
-    const [currentShipId, setCurrentShipId] = useState([]);
-
     //toucher/couler
-    /*const handleClick = (rowIndex, colIndex) => {
+    const handleClick = (rowIndex, colIndex) => {
         const newGrid = [...grid];
-        const shipIndex = findShipIndex(rowIndex, colIndex);
-        if (shipIndex >= 0) {
-            const { size, orientation, row, col } = ships[shipIndex];
-            const newShip = { name: ships[shipIndex].name, size, orientation, row, col };
-            const isShipVertical = orientation === 'vertical';
-            const newShipCells = [];
-            for (let i = 0; i < size; i++) {
-                const newRowIndex = isShipVertical ? row + i : row;
-                const newColIndex = isShipVertical ? col : col + i;
-                newShipCells.push([newRowIndex, newColIndex]);
-                newGrid[newRowIndex][newColIndex] = 'S';
-            }
-            const newShips = [...ships];
-            newShips[shipIndex] = { ...newShip, cells: newShipCells };
-            setShips(newShips);
-        } else {
+        //appel api avec coordonnees click -> retour bool
+        let hit = false;
+        if (hit === true) {
             newGrid[rowIndex][colIndex] = 'X';
         }
+        else {
+            newGrid[rowIndex][colIndex] = 'S';
+        }
         setGrid(newGrid);
-    };*/
-
-    const findShipIndex = (rowIndex, colIndex) => {
-        return ships.findIndex(ship =>
-            ship.cells && ship.cells.some(([row, col]) => row === rowIndex && col === colIndex)
-        );
     };
-
-    const handlePlaceShip = (rowIndex, colIndex) => {
-        if (currentShipId != -1) {
-            const ship = ships[currentShipId - 1];
-            if (ship !== undefined) {
-                placeShip(rowIndex, colIndex, ship);
-            }
-        }
-    }
-
-    //placer navire
-    const placeShip = (rowIndex, colIndex, ship) => {
-        ship.row = rowIndex;
-        ship.col = colIndex;
-        const isShipVertical = ship.orientation === 'vertical';
-        for (let i = 0; i < ship.size; i++) {
-            const newRowIndex = isShipVertical ? rowIndex + i : rowIndex;
-            const newColIndex = isShipVertical ? colIndex : colIndex + i;
-            if (newRowIndex >= grid.length || newColIndex >= grid[0].length) {
-                alert('Cannot place ship outside the grid!');
-                return;
-            }
-            if (grid[newRowIndex][newColIndex] === 'S') {
-                alert('Cannot place ship on top of another ship!');
-                return;
-            }
-            ship.cells.push([newRowIndex, newColIndex]);
-        }
-        for (let i = 0; i < ship.size; i++) {
-            const newRowIndex = isShipVertical ? rowIndex + i : rowIndex;
-            const newColIndex = isShipVertical ? colIndex : colIndex + i;
-            const newGrid = [...grid];
-            newGrid[newRowIndex][newColIndex] = 'S';
-            setGrid(newGrid);
-        }
-
-        if (ships[currentShipId - 1] !== undefined) {
-            placedShips[currentShipId - 1] = ship;
-            delete ships[currentShipId - 1];
-        }
-    };
-
-    const handleRotateShip = () => {
-        const ship = placedShips[currentShipId - 1];
-        const isShipVertical = ship.orientation === 'vertical';
-        const newOrientation = isShipVertical ? 'horizontal' : 'vertical';
-        ship.orientation = newOrientation;
-        for (let i = 0; i < ship.cells.length; i++) {
-            const row = ship.cells[i][0];
-            const col = ship.cells[i][1];
-            const newGrid = [...grid];
-            newGrid[row][col] = 'O';
-            setGrid(newGrid);
-        }
-        placeShip(ship.row, ship.col, ship);
-    };
-
-    const handleRemoveShip = () => {
-        const ship = placedShips[currentShipId - 1];
-
-        if (ship !== undefined) {
-            const isShipVertical = ship.orientation === 'vertical';
-            const newOrientation = isShipVertical ? 'horizontal' : 'vertical';
-            ship.orientation = newOrientation;
-            for (let i = 0; i < ship.cells.length; i++) {
-                const row = ship.cells[i][0];
-                const col = ship.cells[i][1];
-                const newGrid = [...grid];
-                newGrid[row][col] = 'O';
-                setGrid(newGrid);
-            }
-
-            ships[currentShipId - 1] = ship;
-            delete placedShips[currentShipId - 1];
-        }
-    };
-
-    const shipsBtns = ships.map(ship => {
-        return (
-            <button key={ship.id} onClick={() => setCurrentShipId(ship.id)}> {ship.name} </button>
-        );
-    });
-
-    const placedShipsBtns = placedShips.map(ship => {
-        return (
-            <button id="button" key={ship.id} onClick={() => setCurrentShipId(ship.id)}> {ship.name} </button>
-        );
-    });
 
     return (
-        <div class="game-container">
+        <div className="board-container">
             <div>
                 {grid.map((row, rowIndex) => (
                     <div key={rowIndex} style={{ display: 'flex' }}>
@@ -163,7 +46,7 @@ export const Game = () => {
                                     cursor: 'pointer',
                                     backgroundColor: cell === 'O' ? 'white' : cell === 'X' ? 'red' : 'gray'
                                 }}
-                                onClick={() => handlePlaceShip(rowIndex, colIndex)}
+                                onClick={() => handleClick(rowIndex, colIndex)}
                             >
                                 {cell === 'S' ? 'O' : cell}
                             </div>
