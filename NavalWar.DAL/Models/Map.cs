@@ -8,5 +8,6 @@ namespace NavalWar.DAL.Models
 {
     public class Map
     {
+        public int MapId { get; set; }
     }
 }

@@ -6,18 +6,19 @@ namespace NavalWar.DTO
     {
         public int? ID { get; set; }
 
-        public PlayerDTO Player1 { get; set; }
+        public int Player1Id { get; set; }
 
-        public PlayerDTO Player2 { get; set; }
+        public int Player2Id { get; set; }
 
-        public PlayerDTO? Winner { get; set; }
+        public int? WinnerId { get; set; }
 
 
-        public SessionDTO(int? id, PlayerDTO player1, PlayerDTO player2)
+        public SessionDTO(int? id, int player1Id, int player2Id, int? winnerId)
         {
             ID = id;
-            Player1 = player1;
-            Player2 = player2;
+            Player1Id = player1Id;
+            Player2Id = player2Id;
+            WinnerId = winnerId;
         }
     }
 }
