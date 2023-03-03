@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NavalWar.Business;
+using NavalWar.DAL.Interfaces;
+using NavalWar.DTO;
 
 namespace NavalWar.API.Controllers
 {
@@ -8,7 +10,8 @@ namespace NavalWar.API.Controllers
     public class PlayerController : ControllerBase
     {
         private readonly PlayerService _playerService;
-
+        private readonly UserService _userService;
+        private readonly SessionService _sessionService;
         public PlayerController(PlayerService playerService)
         {
             _playerService = playerService;
@@ -21,7 +24,36 @@ namespace NavalWar.API.Controllers
             return Ok(_playerService.GetPlayers());
         }
 
-        // POST: api/<PlayerController>/
+
+
+
+        // POST: api/<PlayerController>/{user}/{session}/ship	
+        [HttpPost("{username}/{idSession}/fire")]
+        public IActionResult Post([FromRouteAttribute] string username, int idsession, [FromBody] int x, [FromBody] int y)
+        {
+            UserDTO currentUser = _userService.GetUserByUsername(username);
+            SessionDTO currentSession = _sessionService.GetSession(idsession);
+            PlayerDTO currentPlayer = _playerService.GetPlayerByKeys(currentUser, currentSession);
+
+            bool result = _playerService.ShotPlayer(currentPlayer, x, y);
+
+            return Ok(result);
+        }
+
+        // PUT: api/<PlayerController>/{user}/{session}/ship	
+        [HttpPut("{username}/{idSession}/ship")]
+        public IActionResult Post([FromRouteAttribute] string username, int idsession, [FromBody] int x, [FromBody] int y)
+        {
+            UserDTO currentUser = _userService.GetUserByUsername(username);
+            SessionDTO currentSession = _sessionService.GetSession(idsession);
+            PlayerDTO currentPlayer = _playerService.GetPlayerByKeys(currentUser, currentSession);
+
+            bool result = _playerService.ShotPlayer(currentPlayer, x, y);
+
+            return Ok(result);
+        }
+
+
 
 
         /*

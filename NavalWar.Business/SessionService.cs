@@ -19,5 +19,11 @@ namespace NavalWar.Business
             List<Session> sessions = (List<Session>)_sessionRepository.GetSessions();
             return sessions.Select(s => s.ToDTO()).ToList();
         }
+
+        //TODO : 
+        public SessionDTO GetSession(int id)
+        {
+            return null;
+        }
     }
 }
