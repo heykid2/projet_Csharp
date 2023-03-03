@@ -19,14 +19,17 @@ namespace NavalWar.DAL
                 .WithOne(p => p.User)
                 ;
             modelBuilder.Entity<Player>()
-                .ToTable("Player");
+                .ToTable("Player")
+                .HasOne(p => p.User)
+                .WithMany(s => s.Players)
+                ;
 
             modelBuilder.Entity<Player>()
-                .HasOne(p => p.isUser)
+                .HasOne(p => p.User)
                 .WithMany(s => s.Players);
 
             modelBuilder.Entity<Player>()
-                .HasOne(p => p.ofSession);
+                .HasOne(p => p.Session);
         }
     }
 }

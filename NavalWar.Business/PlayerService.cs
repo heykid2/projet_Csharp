@@ -24,5 +24,16 @@ namespace NavalWar.Business
         {
             _playerRepository.InsertPlayer(player.ToModel());
         }
+        //TODO :
+        public PlayerDTO GetPlayerByKeys(UserDTO UserDTP, SessionDTO SessionDTP)
+        {
+            return null;
+        }
+        //TODO :
+        public bool ShotPlayer(PlayerDTO PlayerDTO, int x, int y)
+        {
+            return true;
+        }
+
     }
 }

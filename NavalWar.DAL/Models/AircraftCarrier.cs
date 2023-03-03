@@ -7,7 +7,7 @@
             PV = 5;
         }
         
-        public AircraftCarrier(int? id, int pv) : base(id, pv)
+        public AircraftCarrier(int? id, int x, int y, int size, bool isvertical) : base(id, 5, x, y, size, isvertical)
         {
             
         }

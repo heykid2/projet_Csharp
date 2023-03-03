@@ -13,13 +13,13 @@ namespace NavalWar.DAL.Models
     public class Session
     {
         [Key]
-        public int? ID { get; set; }
+        public int? SessionId { get; set; }
 
-        public Player Player1 { get; set; }
+        public int Player1Id { get; set; }
         
-        public Player Player2 { get; set; }
+        public int Player2Id { get; set; }
 
-        public Player? Winner { get; set; }
+        public int? WinnerPlayerId { get; set; }
 
         public SessionStatus Status { get; set; }
 
