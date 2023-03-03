@@ -39,7 +39,7 @@ namespace NavalWar.API.Controllers
 
         // PUT: api/<PlayerController>/{user}/{session}/ship	
         [HttpPut("{username}/{idSession}/ship")]
-        public IActionResult Put([FromRouteAttribute] string username, int idsession, [FromBody] int x, [FromBody] int y)
+        public IActionResult Put(string username, int idsession, [FromBody] int x, [FromBody] int y)
         {
             UserDTO currentUser = _userService.GetUserByUsername(username);
             SessionDTO currentSession = _sessionService.GetSession(idsession);
