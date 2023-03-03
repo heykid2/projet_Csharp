@@ -13,8 +13,6 @@ namespace NavalWar.DAL.Models
 
         public Session Session { get; set; }
 
-        public Map HasMap { get; set; }
-
         public List<Ship> Ships { get; set; }
 
         public List<Shot> Shots { get; set; }

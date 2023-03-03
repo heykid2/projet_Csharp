@@ -6,5 +6,7 @@ namespace NavalWar.Business
     {
         void AddPlayer(PlayerDTO user);
         List<PlayerDTO> GetPlayers();
+        PlayerDTO GetPlayerByKeys(UserDTO UserDTP, SessionDTO SessionDTP);
+        bool ShotPlayer(PlayerDTO PlayerDTO, int x, int y);
     }
 }
