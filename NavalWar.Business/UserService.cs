@@ -14,9 +14,16 @@ namespace NavalWar.Business
             _userRepository = userRepository;
         }
 
-        public void AddUser(UserDTO user)
+        public bool AddUser(UserDTO user)
         {
-            _userRepository.InsertUser(user.ToModel());
+            bool result = false;
+            User? existantUser = _userRepository.GetUserByUsername(user.Name);
+            if (existantUser == null)
+            {
+                _userRepository.InsertUser(user.ToModel());
+                result = true;
+            }
+            return result;
         }
 
         public List<UserDTO> GetUsers()

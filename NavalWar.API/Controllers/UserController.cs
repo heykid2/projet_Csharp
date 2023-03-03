@@ -33,9 +33,9 @@ namespace NavalWar.API.Controllers
 
         // POST api/<UserController>
         [HttpPost]
-        public void Post([FromBody] UserDTO userDTO)
+        public IActionResult Post([FromBody] UserDTO userDTO)
         {
-            _userService.AddUser(userDTO);
+            return (_userService.AddUser(userDTO)) ? Ok("Le User a bien été créé.") : BadRequest("Le User existe déjà.");
         }
     }
 }
