@@ -25,6 +25,11 @@ namespace NavalWar.DAL.Repositories
             return null;
         }
 
+        public Session GetUserSession(int userId, int sessionId)
+        {
+            return null;
+        }
+
         public void InsertSession(Session session)
         {
             //_context.Sessions.Add(session);
