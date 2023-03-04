@@ -23,31 +23,24 @@ namespace NavalWar.API.Controllers
         {
             return Ok(_playerService.GetPlayers());
         }
+        
 
-        // POST: api/<PlayerController>/{user}/{session}/ship	
-        [HttpPost("{username}/{idSession}/fire")]
-        public IActionResult Post([FromRouteAttribute] string username, int idsession, [FromBody] int x, [FromBody] int y)
+        // POST: api/<PlayerController>/5/fire	
+        [HttpPost("{playerId}/fire")]
+        public IActionResult Post([FromRouteAttribute] int playerId, [FromBody] int x, [FromBody] int y)
         {
-            UserDTO currentUser = _userService.GetUserByUsername(username);
-            SessionDTO currentSession = _sessionService.GetSession(idsession);
-            PlayerDTO currentPlayer = _playerService.GetPlayerByKeys(currentUser, currentSession);
+            int result = _playerService.Fire(playerId, x, y);
 
-            bool result = _playerService.ShotPlayer(currentPlayer, x, y);
-
+            // -1 = erreur, 0 = loupé, 1 = touché, 2 = coulé, 3 = coulé et gagné
             return Ok(result);
         }
 
         // PUT: api/<PlayerController>/{user}/{session}/ship	
-        [HttpPut("{username}/{idSession}/ship")]
-        public IActionResult Put([FromRouteAttribute] string username, int idsession, [FromBody] int x, [FromBody] int y)
+        [HttpPut("{playerId}/ship/{shipId}")]
+        public IActionResult Put([FromRouteAttribute] int playerId, [FromRouteAttribute] int shipId,
+                                    [FromBody] int x, [FromBody] int y, [FromBody] bool isVertical)
         {
-            UserDTO currentUser = _userService.GetUserByUsername(username);
-            SessionDTO currentSession = _sessionService.GetSession(idsession);
-            PlayerDTO currentPlayer = _playerService.GetPlayerByKeys(currentUser, currentSession);
-
-            bool result = _playerService.ShotPlayer(currentPlayer, x, y);
-
-            return Ok(result);
+            return Ok(_playerService.UpdateShip(playerId, shipId, x, y, isVertical));
         }
 
 
