@@ -1,4 +1,5 @@
-﻿using NavalWar.DTO;
+﻿using NavalWar.DAL.Models;
+using NavalWar.DTO;
 
 namespace NavalWar.DAL.Interfaces
 {
@@ -6,6 +7,16 @@ namespace NavalWar.DAL.Interfaces
     {
         List<SessionDTO> GetSessions();
 
-        SessionDTO GetSession(int id);
+        SessionDTO GetSessionById(int id);
+
+        SessionStatus GetSessionStatus(int id);
+
+        SessionDTO GetUserSession(int userId, int sessionId);
+
+        void AddSession(SessionDTO session);
+
+        void UpdateSession(UserDTO user, SessionDTO session);
+
+        void DeleteSession(int session);
     }
 }

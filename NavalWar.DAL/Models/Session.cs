@@ -2,6 +2,14 @@
 
 namespace NavalWar.DAL.Models
 {
+    public enum SessionStatus
+    {
+        Waiting,        //attente de tous les joueurs
+        Placement,      //placement des bateaux
+        Ingame,         //en cours de partie
+        Ended           //finie
+    }
+
     public class Session
     {
         [Key]
@@ -13,11 +21,14 @@ namespace NavalWar.DAL.Models
 
         public int? WinnerPlayerId { get; set; }
 
-        public Session(int? sessionId, int player1Id, int player2Id)
+        public SessionStatus Status { get; set; }
+
+        public Session(int? id, Player player1, Player player2)
         {
-            SessionId = sessionId;
-            Player1Id = player1Id;
-            Player2Id = player2Id;
+            ID = id;
+            Player1 = player1;
+            Player2 = player2;
+            Status = SessionStatus.Waiting;
         }
     }
 }

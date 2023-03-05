@@ -20,10 +20,37 @@ namespace NavalWar.Business
             return sessions.Select(s => s.ToDTO()).ToList();
         }
 
-        //TODO : 
-        public SessionDTO GetSession(int id)
+        public SessionDTO GetSessionById(int id)
         {
-            return null;
+            Session session = (Session)_sessionRepository.GetSessionById(id);
+            return session.ToDTO();
+        }
+
+        public SessionStatus GetSessionStatus(int id)
+        {
+            Session session = (Session)_sessionRepository.GetSessionById(id);
+            return session.Status;
+        }
+
+        public SessionDTO GetUserSession(int userId, int sessionId)
+        {
+            Session session = (Session)_sessionRepository.GetUserSession(userId, sessionId);
+            return session.ToDTO();
+        }
+
+        public void AddSession(SessionDTO session)
+        {
+            _sessionRepository.InsertSession(session.ToModel());
+        }
+
+        public void UpdateSession(UserDTO user, SessionDTO session)
+        {
+            _sessionRepository.UpdateSession(session.ToModel());
+        }
+
+        public void DeleteSession(int session)
+        {
+            _sessionRepository.DeleteSession(session);
         }
     }
 }

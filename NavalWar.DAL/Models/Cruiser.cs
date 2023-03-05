@@ -7,7 +7,7 @@
             PV = 4;
         }
 
-        public Cruiser(int? id, int pv) : base(id, pv)
+        public Cruiser(int? id, int x, int y, int size, bool isvertical) : base(id, 4, x, y, size, isvertical)
         {
             
         }
