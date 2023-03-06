@@ -10,6 +10,8 @@ namespace NavalWar.DAL
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Shot> Shots { get; set; }
+        public DbSet<Ship> Ships { get; set; }
         public DbSet<Session> Sessions { get; set; }
 
 
@@ -28,10 +30,20 @@ namespace NavalWar.DAL
 
             modelBuilder.Entity<Player>()
                 .HasOne(p => p.User)
-                .WithMany(s => s.Players);
+                .WithMany(s => s.Players)
+                ;
 
             modelBuilder.Entity<Player>()
-                .HasOne(p => p.Session);
+                .HasOne(p => p.Session)
+                ;
+
+            modelBuilder.Entity<Player>()
+                .HasMany(p => p.Ships)
+                ;
+
+            modelBuilder.Entity<Shot>()
+                .ToTable("Shot")
+                ;
         }
     }
 }
