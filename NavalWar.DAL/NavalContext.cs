@@ -8,7 +8,9 @@ namespace NavalWar.DAL
         public NavalContext(DbContextOptions<NavalContext> options) : base(options)
         {
         }
+
         public DbSet<User> Users { get; set; }
+        public DbSet<Session> Sessions { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

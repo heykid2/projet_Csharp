@@ -15,19 +15,17 @@ namespace NavalWar.DAL.Repositories
 
         public IEnumerable<Session> GetSessions()
         {
-            //return _context.Sessions.ToList();
-            return null;
+            return _context.Sessions.ToList();
         }
 
         public Session GetSessionById(int id)
         {
-            //return _context.Sessions.Find(id);
-            return null;
+            return _context.Sessions.Find(id);
         }
 
         public Session GetUserSession(int userId, int sessionId)
         {
-            return null;
+            return null;//_context.Sessions.Find();
         }
 
         public void InsertSession(Session session)
@@ -37,18 +35,18 @@ namespace NavalWar.DAL.Repositories
 
         public void DeleteSession(int id)
         {
-            //Session session = _context.Sessions.Find(id);
-            //_context.Sessions.Remove(session);
+            Session session = _context.Sessions.Find(id);
+            _context.Sessions.Remove(session);
         }
 
         public void UpdateSession(Session session)
         {
-            //_context.Entry(session).State = EntityState.Modified;
+            _context.Entry(session).State = EntityState.Modified;
         }
 
         public void Save()
         {
-            //_context.SaveChanges();
+            _context.SaveChanges();
         }
     }
 }
