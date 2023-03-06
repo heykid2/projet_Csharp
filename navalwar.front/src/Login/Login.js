@@ -9,8 +9,8 @@ export const Login = () => {
         e.preventDefault();
 
         //TODO: mettre le bon url
-        postData('http://cabe0232.odns.fr/webdev-api/order', {
-            pseudo: pseudo
+        postData('https://localhost:5297/api/User', {
+            name: pseudo
         })
             .then((data) => {
                 console.log(data); // JSON data parsed by `data.json()` call
@@ -34,7 +34,7 @@ export const Login = () => {
         // Default options are marked with *
         const response = await fetch(url, {
             method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors', // no-cors, *cors, same-origin
+            mode: 'no-cors', // no-cors, *cors, same-origin
             headers: {
                 'Content-Type': 'application/json'
                 // 'Content-Type': 'application/x-www-form-urlencoded',
@@ -42,8 +42,8 @@ export const Login = () => {
             body: JSON.stringify(data) // body data type must match "Content-Type" header
         });
 
-        if (response.status < 300) {
-            console.log("player créé");
+        if (response.ok === true) {
+            console.log("player cree");
         }
 
         return response.text(); // parses JSON response into native JavaScript objects

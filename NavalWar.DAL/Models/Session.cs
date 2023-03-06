@@ -23,12 +23,25 @@ namespace NavalWar.DAL.Models
 
         public SessionStatus Status { get; set; }
 
+        public Session()
+        {
+            Random rand = new Random();
+            SessionId = rand.Next(1000);
+        }
+
+        public Session(int? id, int player1)
+        {
+            SessionId = id;
+            Player1Id = player1;
+            Status = SessionStatus.Waiting;
+        }
+
         public Session(int? id, int player1, int player2)
         {
             SessionId = id;
             Player1Id = player1;
             Player2Id = player2;
-            Status = SessionStatus.Waiting;
+            Status = SessionStatus.Placement;
         }
     }
 }
