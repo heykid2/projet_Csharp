@@ -8,7 +8,11 @@ namespace NavalWar.DAL
         public NavalContext(DbContextOptions<NavalContext> options) : base(options)
         {
         }
+
         public DbSet<User> Users { get; set; }
+        public DbSet<Shot> Shots { get; set; }
+        public DbSet<Ship> Ships { get; set; }
+        public DbSet<Session> Sessions { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -19,14 +23,22 @@ namespace NavalWar.DAL
                 //.WithOne(p => p.User)
                 ;
             modelBuilder.Entity<Player>()
-                .ToTable("Player");
+                .ToTable("Player")
+                .HasOne(p => p.User)
+                .WithMany(s => s.Players)
+                ;
 
             modelBuilder.Entity<Player>()
-                .HasOne(p => p.isUser)
-                .WithMany(s => s.Players);
+                .HasOne(p => p.Session)
+                ;
 
             modelBuilder.Entity<Player>()
-                .HasOne(p => p.ofSession);
+                .HasMany(p => p.Ships)
+                ;
+
+            modelBuilder.Entity<Shot>()
+                .ToTable("Shot")
+                ;
         }
     }
 }

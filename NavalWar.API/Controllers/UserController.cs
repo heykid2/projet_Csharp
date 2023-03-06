@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using NavalWar.DAL.Interfaces;
 using NavalWar.DTO;
-using System.Text.Json;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -11,37 +10,32 @@ namespace NavalWar.API.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        //private readonly IUserService _userService;
+        private readonly IUserService _userService;
 
-        //public UserController(IUserService userService)
-        //{
-        //    _userService = userService;
-        //}
+        public UserController(IUserService userService)
+        {
+            _userService = userService;
+        }
 
-        //// GET api/<UserController>/wololo
-        //[HttpGet("{username}")]
-        //public IActionResult Get(string username)
-        //{
-        //    return Ok(_userService.GetUserByUsername(username));
-        //}
+        // GET: api/<UserController>
+        [HttpGet]
+        public IActionResult Get()
+        {
+            return Ok(_userService.GetUsers());
+        }
 
-        //// POST api/<UserController>
-        //[HttpPost]
-        //public void Post([FromBody] UserDTO userDTO)
-        //{
-        //    _userService.AddUser(userDTO);
-        //}
+        // GET api/<UserController>/wololo
+        [HttpGet("{username}")]
+        public IActionResult Get(string username)
+        {
+            return Ok(_userService.GetUserByUsername(username));
+        }
 
-        //// PUT api/<UserController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<UserController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        // POST api/<UserController>
+        [HttpPost]
+        public IActionResult Post([FromBody] UserDTO userDTO)
+        {
+            return (_userService.AddUser(userDTO)) ? Ok("Le User a bien été créé.") : BadRequest("Le User existe déjà.");
+        }
     }
 }

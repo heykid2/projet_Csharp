@@ -25,6 +25,8 @@ builder.Services.AddScoped<ISessionService, SessionService>();
 builder.Services.AddScoped<ISessionRepository, SessionRepository>();
 builder.Services.AddScoped<IPlayerService, PlayerService>();
 builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
+builder.Services.AddScoped<IShotRepository, ShotRepository>();
+builder.Services.AddScoped<IShipRepository, ShipRepository>();
 
 var app = builder.Build();
 

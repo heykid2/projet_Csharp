@@ -16,35 +16,36 @@ namespace NavalWar.DAL.Repositories
 
         public IEnumerable<Session> GetSessions()
         {
-            //return _context.Sessions.ToList();
-            return null;
+            return _context.Sessions.ToList();
         }
 
         public Session GetSessionById(int id)
         {
-            //return _context.Sessions.Find(id);
-            return null;
+            return _context.Sessions.Find(id);
+        }
+
+        public Session GetUserSession(int userId, int sessionId)
+        {
+            return null;//_context.Sessions.Find();
         }
 
         public void InsertSession(Session session)
         {
-            //_context.Sessions.Add(session);
+            _context.Sessions.Add(session);
+            _context.SaveChanges();
         }
 
         public void DeleteSession(int id)
         {
-            //Session session = _context.Sessions.Find(id);
-            //_context.Sessions.Remove(session);
+            Session session = _context.Sessions.Find(id);
+            _context.Sessions.Remove(session);
+            _context.SaveChanges();
         }
 
         public void UpdateSession(Session session)
         {
-            //_context.Entry(session).State = EntityState.Modified;
-        }
-
-        public void Save()
-        {
-            //_context.SaveChanges();
+            _context.Sessions.Update(session);
+            _context.SaveChanges();
         }
 
         //IEnumerable<SessionDTO> ISessionRepository.GetSessions()

@@ -13,47 +13,61 @@ namespace NavalWar.API.Controllers
     [ApiController]
     public class SessionController : ControllerBase
     {
-        //private readonly ISessionService _sessionService;
+        private readonly ISessionService _sessionService;
 
-        //public SessionController(ISessionService sessionService)
-        //{
-        //    _sessionService = sessionService;
-        //}
+        public SessionController(ISessionService sessionService)
+        {
+            _sessionService = sessionService;
+        }
 
         
-        //// GET: api/<GameAreaController>
-        //[HttpGet]
-        //public IActionResult GetSessions()
-        //{
-        //    List<SessionDTO> sessions = _sessionService.GetSessions();
+        // GET: api/<GameAreaController>
+        [HttpGet]
+        public IActionResult GetSessions()
+        {
+            return Ok(_sessionService.GetSessions());
+        }
 
-        //    return Ok(sessions);
-        //}
-        /*
+
         // GET api/<GameAreaController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult GetSession(int id)
         {
-            return "value";
+            return Ok(_sessionService.GetSessionById(id));
+        }
+
+        //GET api/<SessionController>/5/status
+        [HttpGet("{id}/status")]
+        public IActionResult GetSessionStatus(int id)
+        {
+            return Ok(_sessionService.GetSessionStatus(id));
+        }
+
+        [HttpGet("sessions/{userId}/sessions/{sessionId}")]
+        public IActionResult GetUserSession(int userId, int sessionId)
+        {
+            return Ok(_sessionService.GetUserSession(userId, sessionId));
         }
 
         // POST api/<GameAreaController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void PostSession([FromBody] SessionDTO session)
         {
+            _sessionService.AddSession(session);
         }
 
         // PUT api/<GameAreaController>/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut]
+        public void Put([FromBody] SessionDTO session)
         {
+            _sessionService.UpdateSession(session);
         }
 
         // DELETE api/<GameAreaController>/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("sessions/{session}")]
+        public void Delete(int session)
         {
+            _sessionService.DeleteSession(session);
         }
-        */
     }
 }
