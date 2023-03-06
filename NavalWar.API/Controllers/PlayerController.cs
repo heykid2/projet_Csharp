@@ -27,9 +27,9 @@ namespace NavalWar.API.Controllers
 
         // POST: api/<PlayerController>/5/fire	
         [HttpPost("{playerId}/fire")]
-        public IActionResult Post([FromRouteAttribute] int playerId, [FromBody] int x, [FromBody] int y)
+        public IActionResult Post([FromRoute] int playerId, [FromBody] ShotDTO shot)
         {
-            int result = _playerService.Fire(playerId, x, y);
+            int result = _playerService.Fire(playerId, shot); 
 
             // -1 = erreur, 0 = loupé, 1 = touché, 2 = coulé, 3 = coulé et gagné
             return Ok(result);
@@ -37,10 +37,10 @@ namespace NavalWar.API.Controllers
 
         // PUT: api/<PlayerController>/{user}/{session}/ship	
         [HttpPut("{playerId}/ship/{shipId}")]
-        public IActionResult Put([FromRouteAttribute] int playerId, [FromRouteAttribute] int shipId,
-                                    [FromBody] int x, [FromBody] int y, [FromBody] bool isVertical)
+        public IActionResult Put([FromRoute] int playerId, [FromRoute] int shipId,
+                                    [FromBody] ShipDTO ship)
         {
-            return Ok(_playerService.UpdateShip(playerId, shipId, x, y, isVertical));
+            return Ok(_playerService.UpdateShip(playerId, shipId, ship));
         }
 
 

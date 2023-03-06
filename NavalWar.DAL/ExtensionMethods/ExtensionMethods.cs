@@ -47,12 +47,12 @@ namespace NavalWar.DAL.ExtensionMethods
 
         public static AircraftCarrierDTO ToDTO(this AircraftCarrier aircraftCarrier)
         {
-            return new AircraftCarrierDTO(aircraftCarrier.ID, aircraftCarrier.PV);
+            return new AircraftCarrierDTO(aircraftCarrier.ID, aircraftCarrier.PV, aircraftCarrier.X, aircraftCarrier.Y, aircraftCarrier.Size, aircraftCarrier.isVertical);
         }
         
         public static AircraftCarrier ToModel(this AircraftCarrierDTO aircraftCarrier)
         {
-            return new AircraftCarrier(aircraftCarrier.ID, aircraftCarrier.PV);
+            return new AircraftCarrier(aircraftCarrier.ID, aircraftCarrier.X, aircraftCarrier.Y, aircraftCarrier.PV, aircraftCarrier.isVertical);
         }
 
         // faire les autres

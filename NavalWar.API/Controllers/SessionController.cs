@@ -58,9 +58,9 @@ namespace NavalWar.API.Controllers
 
         // PUT api/<GameAreaController>/5
         [HttpPut]
-        public void Put([FromBody] UserDTO user, [FromBody] SessionDTO session)
+        public void Put([FromBody] SessionDTO session)
         {
-            _sessionService.UpdateSession(user, session);
+            _sessionService.UpdateSession(session);
         }
 
         // DELETE api/<GameAreaController>/5

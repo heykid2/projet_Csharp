@@ -11,6 +11,5 @@ namespace NavalWar.DAL.Interfaces
         public void InsertSession(Session session);
         public void DeleteSession(int id);
         public void UpdateSession(Session session);
-        public void Save();
     }
 }

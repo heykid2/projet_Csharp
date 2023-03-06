@@ -2,7 +2,7 @@
 {
     public class AircraftCarrierDTO : ShipDTO
     {
-        public AircraftCarrierDTO(int? id, int pv) : base(id, pv)
+        public AircraftCarrierDTO(int? id, int pv, int x, int y, int size, bool isVertical) : base(id, pv, x, y, size, isVertical)
         {
             
         }

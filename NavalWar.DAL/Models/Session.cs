@@ -23,11 +23,11 @@ namespace NavalWar.DAL.Models
 
         public SessionStatus Status { get; set; }
 
-        public Session(int? id, Player player1, Player player2)
+        public Session(int? id, int player1, int player2)
         {
-            ID = id;
-            Player1 = player1;
-            Player2 = player2;
+            SessionId = id;
+            Player1Id = player1;
+            Player2Id = player2;
             Status = SessionStatus.Waiting;
         }
     }

@@ -30,22 +30,20 @@ namespace NavalWar.DAL.Repositories
 
         public void InsertSession(Session session)
         {
-            //_context.Sessions.Add(session);
+            _context.Sessions.Add(session);
+            _context.SaveChanges();
         }
 
         public void DeleteSession(int id)
         {
             Session session = _context.Sessions.Find(id);
             _context.Sessions.Remove(session);
+            _context.SaveChanges();
         }
 
         public void UpdateSession(Session session)
         {
-            _context.Entry(session).State = EntityState.Modified;
-        }
-
-        public void Save()
-        {
+            _context.Sessions.Update(session);
             _context.SaveChanges();
         }
     }

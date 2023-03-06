@@ -15,7 +15,7 @@ namespace NavalWar.DAL.Interfaces
 
         void AddSession(SessionDTO session);
 
-        void UpdateSession(UserDTO user, SessionDTO session);
+        void UpdateSession(SessionDTO session);
 
         void DeleteSession(int session);
     }

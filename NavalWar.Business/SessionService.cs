@@ -43,7 +43,7 @@ namespace NavalWar.Business
             _sessionRepository.InsertSession(session.ToModel());
         }
 
-        public void UpdateSession(UserDTO user, SessionDTO session)
+        public void UpdateSession(SessionDTO session)
         {
             _sessionRepository.UpdateSession(session.ToModel());
         }

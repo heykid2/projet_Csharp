@@ -35,16 +35,15 @@ namespace NavalWar.Business
         
         
         //TODO : MAJ BATEAU EN BD
-        public int Fire(int playerId, int x, int y)
+        public int Fire(int playerId, ShotDTO shot)
         {
             int result; // -1 = erreur, 0 = loupé, 1 = touché, 2 = coulé, 3 = coulé et gagné
             Player player;
             Session session;
             Player adversaire;
             Ship? hitShip = null;
-            Shot shot = new(null, x, y, false);
 
-            if (x < 0 || x >= 10 || y < 0 || y >= 10)
+            if (shot.X < 0 || shot.X >= 10 || shot.Y < 0 || shot.Y >= 10)
             {
                 result = -1;
             }
@@ -60,7 +59,7 @@ namespace NavalWar.Business
                     
                     if (ship.isVertical)
                     {
-                        if (x == ship_begin_x && y >= ship_begin_y && y < ship_begin_y + ship.Size)
+                        if (shot.X == ship_begin_x && shot.Y >= ship_begin_y && shot.Y < ship_begin_y + ship.Size)
                         {
                             hitShip = ship;
                             break;
@@ -68,7 +67,7 @@ namespace NavalWar.Business
                     }
                     else
                     {
-                        if (y == ship_begin_y && x >= ship_begin_x && x < ship_begin_x + ship.Size)
+                        if (ship.Y == ship_begin_y && shot.X >= ship_begin_x && shot.X < ship_begin_x + ship.Size)
                         {
                             hitShip = ship;
                             break;
@@ -82,9 +81,9 @@ namespace NavalWar.Business
                 }
                 else
                 {
-                    shot.IsHit = true;
-                    _shotRepository.InsertShot(shot);
-                    player.Shots.Add(shot);
+                    shot.Hit = true;
+                    _shotRepository.InsertShot(shot.ToModel());
+                    player.Shots.Add(shot.ToModel());
                     _playerRepository.UpdatePlayer(player);
                     hitShip.PV--;
                     if (hitShip.PV == 0)
@@ -115,16 +114,16 @@ namespace NavalWar.Business
             return result;
         }
 
-        public int UpdateShip(int playerId, int shipId, int x, int y, bool isVertical)
+        public int UpdateShip(int playerId, int shipId, ShipDTO shipDto)
         {
             int result = -1; // -1 = erreur, 0 = ok
             Player player = _playerRepository.GetPlayerById(playerId);
             Ship? ship = player.Ships.Where(s => s.ID == shipId).FirstOrDefault();
             if (ship != null)
             {
-                ship.X = x;
-                ship.Y = y;
-                ship.isVertical = isVertical;
+                ship.X = shipDto.X;
+                ship.Y = shipDto.Y;
+                ship.isVertical = shipDto.isVertical;
                 _shipRepository.UpdateShip(ship);
                 result = 0;
             }
