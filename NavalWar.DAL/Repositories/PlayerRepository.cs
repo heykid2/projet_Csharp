@@ -19,10 +19,9 @@ namespace NavalWar.DAL.Repositories
             return null;
         }
 
-        public Player GetPlayerById(int id)
+        public Player GetPlayerById(int? id)
         {
-            //return _context.Players.Find(id);
-            return null;
+            return (id == null) ? _context.Players.Find(id) : null;
         }
 
         public void InsertPlayer(Player Player)

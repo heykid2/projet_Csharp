@@ -12,9 +12,12 @@ namespace NavalWar.Business
         private readonly ISessionRepository _sessionRepository;
         private readonly IShipRepository _shipRepository;
 
-        public PlayerService(IPlayerRepository playerRepository)
+        public PlayerService(IPlayerRepository playerRepository, IShotRepository shotRepository, ISessionRepository sessionRepository, IShipRepository shipRepository)
         {
             _playerRepository = playerRepository;
+            _shotRepository = shotRepository;
+            _sessionRepository = sessionRepository;
+            _shipRepository = shipRepository;
         }
 
         public List<PlayerDTO> GetPlayers()

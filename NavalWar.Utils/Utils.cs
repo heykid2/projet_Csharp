@@ -16,4 +16,12 @@
             return response;
         }
     }
+
+    public enum SessionStatus
+    {
+        Waiting,        //attente de tous les joueurs
+        Placement,      //placement des bateaux
+        Ingame,         //en cours de partie
+        Ended           //finie
+    }
 }

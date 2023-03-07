@@ -13,6 +13,7 @@ namespace NavalWar.DAL
         public DbSet<Shot> Shots { get; set; }
         public DbSet<Ship> Ships { get; set; }
         public DbSet<Session> Sessions { get; set; }
+        public DbSet<Player> Players { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
