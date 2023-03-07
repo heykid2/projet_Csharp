@@ -8,15 +8,14 @@ namespace NavalWar.DAL.Repositories
     {
         private readonly NavalContext _context;
 
-        public PlayerRepository(NavalContext _context)
+        public PlayerRepository(NavalContext context)
         {
-            _context = _context;
+            _context = context;
         }
 
         public IEnumerable<Player> GetPlayers()
         {
-            //return _context.Players.ToList();
-            return null;
+            return _context.Players.ToList();
         }
 
         public Player GetPlayerById(int? id)

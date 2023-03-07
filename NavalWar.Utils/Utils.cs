@@ -19,9 +19,9 @@
 
     public enum SessionStatus
     {
-        Waiting,        //attente de tous les joueurs
-        Placement,      //placement des bateaux
-        Ingame,         //en cours de partie
-        Ended           //finie
+        Waiting = 0,        //attente de tous les joueurs
+        Placement = 1,      //placement des bateaux
+        Ingame = 2,         //en cours de partie
+        Ended  = 3          //finie
     }
 }

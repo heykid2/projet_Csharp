@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NavalWar.DAL.Models;
+using NavalWar.Utils;
 
 namespace NavalWar.DAL
 {
@@ -27,10 +28,6 @@ namespace NavalWar.DAL
                 .ToTable("Player")
                 .HasOne(p => p.User)
                 .WithMany(s => s.Players)
-                ;
-
-            modelBuilder.Entity<Player>()
-                .HasOne(p => p.Session)
                 ;
 
             modelBuilder.Entity<Player>()

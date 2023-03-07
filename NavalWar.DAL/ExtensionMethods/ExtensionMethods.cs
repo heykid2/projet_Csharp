@@ -21,9 +21,9 @@ namespace NavalWar.DAL.ExtensionMethods
         
         public static Session ToModel(this SessionDTO session)
         {
-            return new Session(session.ID, session.Player1Id, session.Player2Id, session.WinnerPlayerId, session.Status);
+            return new Session(session.SessionId, session.Player1Id, session.Player2Id, session.WinnerPlayerId, session.Status);
         }
-
+        
         public static PlayerDTO ToDTO(this Player player)
         {
             return new PlayerDTO(player.User.ToDTO(), player.Session.ToDTO());

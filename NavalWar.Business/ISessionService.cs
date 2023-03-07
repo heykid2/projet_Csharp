@@ -10,7 +10,7 @@ namespace NavalWar.DAL.Interfaces
 
         SessionDTO GetSessionById(int id);
 
-        SessionStatus GetSessionStatus(int id);
+        SessionStatus? GetSessionStatus(int id);
 
         SessionDTO GetUserSession(int userId, int sessionId);
 
