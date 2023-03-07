@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\NavalWar.DTO\NavalWar.DTO.csproj" />
+    <ProjectReference Include="..\NavalWar.Utils\NavalWar.Utils.csproj" />
   </ItemGroup>
 
 </Project>

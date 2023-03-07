@@ -30,13 +30,11 @@ namespace NavalWar.DAL.Models
             Status = SessionStatus.Waiting;
         }
 
-        public Session(int? id, int player1, int player2)
         public Session(int? id, int? player1, int? player2, int? winner, SessionStatus? status)
         {
             SessionId = id;
             Player1Id = player1;
             Player2Id = player2;
-            Status = SessionStatus.Placement;
             WinnerPlayerId = winner;
             Status = status ?? SessionStatus.Waiting;
         }
