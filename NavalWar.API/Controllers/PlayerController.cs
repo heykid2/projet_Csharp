@@ -11,8 +11,6 @@ namespace NavalWar.API.Controllers
     public class PlayerController : ControllerBase
     {
         private readonly PlayerService _playerService;
-        private readonly UserService _userService;
-        private readonly SessionService _sessionService;
         public PlayerController(PlayerService playerService)
         {
             _playerService = playerService;
