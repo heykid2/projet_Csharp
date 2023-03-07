@@ -27,7 +27,7 @@ namespace NavalWar.Business
             return session.ToDTO();
         }
 
-        public SessionStatus GetSessionStatus(int id)
+        public SessionStatus? GetSessionStatus(int id)
         {
             Session session = (Session)_sessionRepository.GetSessionById(id);
             return session.Status;

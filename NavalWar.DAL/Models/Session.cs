@@ -15,14 +15,14 @@ namespace NavalWar.DAL.Models
 
         public int? WinnerPlayerId { get; set; }
 
-        public SessionStatus Status { get; set; }
+        public SessionStatus? Status { get; set; }
 
-        public Session(int? id, int? player1, int? player2, int? winner, SessionStatus? status)
+        public Session(int? sessionId, int? player1Id, int? player2Id, int? winnerPlayerId, SessionStatus? status)
         {
-            SessionId = id;
-            Player1Id = player1;
-            Player2Id = player2;
-            WinnerPlayerId = winner;
+            SessionId = sessionId;
+            Player1Id = player1Id;
+            Player2Id = player2Id;
+            WinnerPlayerId = winnerPlayerId;
             Status = status ?? SessionStatus.Waiting;
         }
     }

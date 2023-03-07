@@ -5,24 +5,24 @@ namespace NavalWar.DTO
     
     public class SessionDTO
     {
-        public int? ID { get; set; }
-
+        public int? SessionId { get; set; }
+        
         public int? Player1Id { get; set; }
 
         public int? Player2Id { get; set; }
 
         public int? WinnerPlayerId { get; set; }
 
-        public SessionStatus Status { get; set; }
+        public SessionStatus? Status { get; set; }
 
 
-        public SessionDTO(int? id, int? player1Id, int? player2Id, int? winnerId, SessionStatus? sessionStatus)
+        public SessionDTO(int? sessionId, int? player1Id, int? player2Id, int? winnerPlayerId, SessionStatus? status)
         {
-            ID = id;
+            SessionId = sessionId;
             Player1Id = player1Id;
             Player2Id = player2Id;
-            WinnerPlayerId = winnerId;
-            Status = sessionStatus ?? SessionStatus.Waiting;
+            WinnerPlayerId = winnerPlayerId;
+            Status = status ?? SessionStatus.Waiting;
         }
     }
 }
