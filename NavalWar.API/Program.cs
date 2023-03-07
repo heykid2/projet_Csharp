@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.SqlServer.Query.Internal;
 using Microsoft.Extensions.Configuration;
 using NavalWar.Business;
 using NavalWar.DAL;
@@ -16,7 +17,14 @@ builder.Services.AddSwaggerGen();
 
 // EFCore options
 builder.Services.AddDbContext<NavalContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("NavalContext")));
+    options.UseSqlServer(builder.Configuration.GetConnectionString("NavalContext"), 
+                            sqlServerOptionsAction: sqlOptions =>
+                            {
+                                sqlOptions.EnableRetryOnFailure(
+                                    maxRetryCount: 10,
+                                    maxRetryDelay: TimeSpan.FromSeconds(5),
+                                    errorNumbersToAdd: null);
+                            }));
 
 // Add your dependencies
 builder.Services.AddScoped<IUserService, UserService>();

@@ -6,7 +6,7 @@ namespace NavalWar.DAL.Interfaces
     {
         public IEnumerable<Session> GetSessions();
         public Session GetSessionById(int id);
-
+        public Session? GetAvailableSession();
         public Session GetUserSession(int userId, int sessionId);
         public void InsertSession(Session session);
         public void DeleteSession(int id);

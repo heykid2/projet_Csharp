@@ -13,6 +13,8 @@ namespace NavalWar.DAL.Interfaces
 
         SessionDTO GetUserSession(int userId, int sessionId);
 
+        public SessionDTO GetAvailableSession();
+
         void AddSession(SessionDTO session);
 
         void UpdateSession(SessionDTO session);

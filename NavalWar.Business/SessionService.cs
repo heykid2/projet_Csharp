@@ -38,6 +38,12 @@ namespace NavalWar.Business
             return session.ToDTO();
         }
 
+        public SessionDTO GetAvailableSession()
+        {
+            Session session = _sessionRepository.GetAvailableSession();
+            return session == null ? session.ToDTO() : null;
+        }
+
         public void AddSession(SessionDTO session)
         {
             _sessionRepository.InsertSession(session.ToModel());

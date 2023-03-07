@@ -19,6 +19,11 @@ namespace NavalWar.DAL.Repositories
             return _context.Sessions.ToList();
         }
 
+        public Session? GetAvailableSession()
+        {
+            return _context.Sessions.First(s => s.Status == SessionStatus.Waiting);
+        }
+
         public Session GetSessionById(int id)
         {
             return _context.Sessions.Find(id);
@@ -32,20 +37,17 @@ namespace NavalWar.DAL.Repositories
         public void InsertSession(Session session)
         {
             _context.Sessions.Add(session);
-            _context.SaveChanges();
         }
 
         public void DeleteSession(int id)
         {
             Session session = _context.Sessions.Find(id);
             _context.Sessions.Remove(session);
-            _context.SaveChanges();
         }
 
         public void UpdateSession(Session session)
         {
             _context.Sessions.Update(session);
-            _context.SaveChanges();
         }
 
         //IEnumerable<SessionDTO> ISessionRepository.GetSessions()

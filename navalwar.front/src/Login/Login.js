@@ -8,13 +8,50 @@ export const Login = () => {
     const connectPlayer = (e) => {
         e.preventDefault();
 
-        //TODO: mettre le bon url
-        postData('https://localhost:5297/api/User', {
-            name: pseudo
-        })
-            .then((data) => {
-                console.log(data); // JSON data parsed by `data.json()` call
+        const response = fetch('https://localhost:3000/api/User', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ name: pseudo })
+        });
+
+        if (response.ok === true) {
+            console.log("player cree");
+
+            const session = fetch('https://localhost:3000/api/session/available', {
+                headers: {
+                    'Accept': 'application/json'
+                }
             });
+
+            if (session === null) {
+                fetch('https://localhost:3000/api/session/available', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: Math.ceil(Math.random() * 10000),
+                        player1Id: 1,
+                        player2Id: 2,
+                        winnerId: -1
+                    })
+                });
+            }
+            else { 
+                fetch('https://localhost:3000/api/session/available', {
+                    method: 'PUT',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify()
+                });
+            }
+        }
     }
 
     return (
@@ -29,23 +66,4 @@ export const Login = () => {
             </div>
         </form>
     )
-
-    async function postData(url = '', data = {}) {
-        // Default options are marked with *
-        const response = await fetch(url, {
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'no-cors', // no-cors, *cors, same-origin
-            headers: {
-                'Content-Type': 'application/json'
-                // 'Content-Type': 'application/x-www-form-urlencoded',
-            },
-            body: JSON.stringify(data) // body data type must match "Content-Type" header
-        });
-
-        if (response.ok === true) {
-            console.log("player cree");
-        }
-
-        return response.text(); // parses JSON response into native JavaScript objects
-    }
 }

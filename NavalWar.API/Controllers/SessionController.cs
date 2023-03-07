@@ -49,6 +49,12 @@ namespace NavalWar.API.Controllers
             return Ok(_sessionService.GetUserSession(userId, sessionId));
         }
 
+        [HttpGet("sessions/available")]
+        public IActionResult GetAvailableSession()
+        {
+            return Ok(_sessionService.GetAvailableSession());
+        }
+
         // POST api/<GameAreaController>
         [HttpPost]
         public void PostSession([FromBody] SessionDTO session)

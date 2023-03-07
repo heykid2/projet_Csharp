@@ -7,7 +7,7 @@ namespace NavalWar.DAL.ExtensionMethods
     {
         public static UserDTO ToDTO(this User user)
         {
-            return new UserDTO(user.Name);
+            return new UserDTO(user.Name, user.Id);
         }
 
         public static User ToModel(this UserDTO user)
