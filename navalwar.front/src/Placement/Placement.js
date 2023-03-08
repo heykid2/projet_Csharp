@@ -16,21 +16,30 @@ export const Placement = () => {
         ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O']
     ]);
 
-    //TODO: get les bateaux avec l'api
-    const [ships] = useState([
-        { id: 1, name: 'Carrier', size: 5, orientation: 'horizontal', row: -1, col: -1, cells: [] },
-        { id: 2, name: 'Battleship', size: 4, orientation: 'vertical', row: -1, col: -1, cells: [] },
-        { id: 3, name: 'Destroyer', size: 3, orientation: 'horizontal', row: -1, col: -1, cells: [] },
-        { id: 4, name: 'Submarine', size: 3, orientation: 'vertical', row: -1, col: -1, cells: [] },
-        { id: 5, name: 'Patrol Boat', size: 2, orientation: 'horizontal', row: -1, col: -1, cells: [] }
-    ]);
+    //TODO: trouver un moyen de mettre le player + de le passer dans l'api
+    const [ships, setShips] = useState([]);
+
+    useEffect(() => {
+        fetch('https://localhost:3000/api/{player.Id}/ships').then(response => response.json()).then(json => setShips(json));
+    }, []);
+
+
+    //    useState([
+    //    { id: 1, name: 'Carrier', size: 5, orientation: 'horizontal', row: -1, col: -1, cells: [] },
+    //    { id: 2, name: 'Battleship', size: 4, orientation: 'vertical', row: -1, col: -1, cells: [] },
+    //    { id: 3, name: 'Destroyer', size: 3, orientation: 'horizontal', row: -1, col: -1, cells: [] },
+    //    { id: 4, name: 'Submarine', size: 3, orientation: 'vertical', row: -1, col: -1, cells: [] },
+    //    { id: 5, name: 'Patrol Boat', size: 2, orientation: 'horizontal', row: -1, col: -1, cells: [] }
+    //]);
+
+
 
     const [placedShips, setPlacedShips] = useState([]);
 
     const [currentShipId, setCurrentShipId] = useState([]);
 
     const handlePlaceShip = (rowIndex, colIndex) => {
-        if (currentShipId != -1) {
+        if (currentShipId !== -1) {
             const ship = ships[currentShipId - 1];
             if (ship !== undefined) {
                 placeShip(rowIndex, colIndex, ship);
@@ -40,9 +49,9 @@ export const Placement = () => {
 
     //placer navire
     const placeShip = (rowIndex, colIndex, ship) => {
-        ship.row = rowIndex;
-        ship.col = colIndex;
-        const isShipVertical = ship.orientation === 'vertical';
+        ship.X = rowIndex;
+        ship.Y = colIndex;
+        const isShipVertical = ship.isVertical;
         for (let i = 0; i < ship.size; i++) {
             const newRowIndex = isShipVertical ? rowIndex + i : rowIndex;
             const newColIndex = isShipVertical ? colIndex : colIndex + i;
@@ -74,11 +83,9 @@ export const Placement = () => {
 
     const handleRotateShip = () => {
         const ship = placedShips[currentShipId - 1];
-        const isShipVertical = ship.orientation === 'vertical';
-        const newOrientation = isShipVertical ? 'horizontal' : 'vertical';
-        ship.orientation = newOrientation;
+        ship.isShipVertical = !ship.isVertical;
 
-        if (placeShip(ship.row, ship.col, ship) == true) {
+        if (placeShip(ship.X, ship.Y, ship) === true) {
             for (let i = 0; i < ship.cells.length; i++) {
                 const row = ship.cells[i][0];
                 const col = ship.cells[i][1];
@@ -93,9 +100,6 @@ export const Placement = () => {
         const ship = placedShips[currentShipId - 1];
 
         if (ship !== undefined) {
-            const isShipVertical = ship.orientation === 'vertical';
-            const newOrientation = isShipVertical ? 'horizontal' : 'vertical';
-            ship.orientation = newOrientation;
             for (let i = 0; i < ship.cells.length; i++) {
                 const row = ship.cells[i][0];
                 const col = ship.cells[i][1];
@@ -120,6 +124,30 @@ export const Placement = () => {
             <button id="button" key={ship.id} onClick={() => setCurrentShipId(ship.id)}> {ship.name} </button>
         );
     });
+
+    const saveBoats = () => {
+        if (allShipsPlaced(ships) === true) {
+            for (let i = 0; i < ships.length; ++i) {
+                let ship = ships[i];
+                fetch('https://localhost:3000/api/{player.id}/ship/{ships[i].id}', {
+                    method: 'PUT',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        id: ship.id,
+                        pv: ship.pv,
+                        x: ship.x,
+                        y: ship.y,
+                        size: ship.size,
+                        isVertical: ship.isVertical,
+                        name: ship.name
+                    })
+                });
+            }
+        }
+    };
 
     return (
         <div className="game-container">

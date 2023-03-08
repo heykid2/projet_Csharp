@@ -11,9 +11,25 @@ export const Login = () => {
     const connectPlayer = (e) => {
         e.preventDefault();
 
-        const player = { id: Math.ceil(Math.random() * 10000), name: pseudo };
+        const user = { id: Math.ceil(Math.random() * 10000), name: pseudo };
+        const player = {
+            Id: Math.ceil(Math.random() * 10000),
+            User: undefined,
+            Session: undefined,
+            Ships: undefined,
+            Shots: undefined
+        };
 
-        const response = fetch('https://localhost:3000/api/User', {
+        fetch('https://localhost:3000/api/User', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        });
+
+        const response = fetch('https://localhost:3000/api/Player/', {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',
