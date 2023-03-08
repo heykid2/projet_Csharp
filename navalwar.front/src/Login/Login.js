@@ -6,7 +6,13 @@ export const Login = () => {
 
     const [pseudo, setpseudo] = useState("");
 
-    let session = undefined;
+    let session = {
+        id: undefined,
+        player1Id: undefined,
+        player2Id: undefined,
+        winnerPlayerId: undefined,
+        status: 0
+    };
 
     const connectPlayer = (e) => {
         e.preventDefault();
