@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NavalWar.DTO;
 
 namespace NavalWar.DAL.Models
 {
@@ -17,6 +18,14 @@ namespace NavalWar.DAL.Models
 
         public List<Shot> Shots { get; set; }
 
+        public Player(int id, User newUser, Session newSession, List<Ship> ships, List<Shot> shots)
+        {
+            PlayerId = id;
+            Ships = ships;
+            Shots = shots;
+            User = newUser;
+            Session = newSession;
+        }
 
     }
 }

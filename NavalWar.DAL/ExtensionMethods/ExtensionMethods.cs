@@ -26,13 +26,38 @@ namespace NavalWar.DAL.ExtensionMethods
         
         public static PlayerDTO ToDTO(this Player player)
         {
-            return new PlayerDTO(player.User.ToDTO(), player.Session.ToDTO());
+            List<ShipDTO> ships = new List<ShipDTO>();
+            List<ShotDTO> shots = new List<ShotDTO>();
+
+            foreach (Ship ship in player.Ships)
+            {
+                ships.Add(ship.ToDTO());
+            }
+
+            foreach (Shot shot in player.Shots)
+            {
+                shots.Add(shot.ToDTO());
+            }
+
+            return new PlayerDTO(player.PlayerId, player.User.ToDTO(), player.Session.ToDTO(), ships, shots);
         }
 
         public static Player ToModel(this PlayerDTO player)
         {
-            //return new Player(player.IDUser, player.IDSession);
-            return new Player();
+            List<Ship> ships = new List<Ship>();
+            List<Shot> shots = new List<Shot>();
+
+            foreach (ShipDTO ship in player.Ships)
+            {
+                ships.Add(ship.ToModel());
+            }
+
+            foreach (ShotDTO shot in player.Shots)
+            {
+                shots.Add(shot.ToModel());
+            }
+
+            return new Player(player.Id, player.User.ToModel(), player.Session.ToModel(), ships, shots);
         }
 
         public static ShotDTO ToDTO(this Shot shot)
@@ -45,14 +70,14 @@ namespace NavalWar.DAL.ExtensionMethods
             return new Shot(shot.ID, shot.X, shot.Y, shot.Hit);
         }
 
-        public static AircraftCarrierDTO ToDTO(this AircraftCarrier aircraftCarrier)
+        public static ShipDTO ToDTO(this Ship ship)
         {
-            return new AircraftCarrierDTO(aircraftCarrier.ID, aircraftCarrier.PV, aircraftCarrier.X, aircraftCarrier.Y, aircraftCarrier.Size, aircraftCarrier.isVertical);
+            return new ShipDTO(ship.ID, ship.PV, ship.X, ship.Y, ship.Size, ship.isVertical, ship.Name);
         }
-        
-        public static AircraftCarrier ToModel(this AircraftCarrierDTO aircraftCarrier)
+
+        public static Ship ToModel(this ShipDTO ship)
         {
-            return new AircraftCarrier(aircraftCarrier.ID, aircraftCarrier.X, aircraftCarrier.Y, aircraftCarrier.PV, aircraftCarrier.isVertical);
+            return new Ship(ship.ID, ship.PV, ship.X, ship.Y, ship.Size, ship.isVertical, ship.Name);
         }
 
         // faire les autres

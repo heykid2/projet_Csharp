@@ -34,6 +34,21 @@ namespace NavalWar.API.Controllers
             return Ok(result);
         }
 
+        [HttpPost]
+        public void CreatePlayer([FromBody] PlayerDTO player)
+        {
+            player.Ships = new List<ShipDTO>
+            {
+                new ShipDTO(1, 5, -1, -1, 5, true, "Aircraft Carrier"),
+                new ShipDTO(2, 4, -1, -1, 4, true, "Battleship"),
+                new ShipDTO(3, 3, -1, -1, 3, true, "Destroyer"),
+                new ShipDTO(4, 3, -1, -1, 3, true, "Submarine"),
+                new ShipDTO(5, 2, -1, -1, 2, true, "Patrol Boat")
+            };
+
+            _playerService.AddPlayer(player);
+        }
+
         // PUT: api/<PlayerController>/{user}/{session}/ship	
         [HttpPut("{playerId}/ship/{shipId}")]
         public IActionResult Put([FromRoute] int playerId, [FromRoute] int shipId,
@@ -42,6 +57,11 @@ namespace NavalWar.API.Controllers
             return Ok(_playerService.UpdateShip(playerId, shipId, ship));
         }
 
+        [HttpGet("/{playerId}/ships")]
+        public IActionResult GetPlayerShips(int playerId)
+        {
+            return Ok(_playerService.GetShips(playerId));
+        }
 
 
 

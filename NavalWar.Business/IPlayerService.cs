@@ -9,5 +9,7 @@ namespace NavalWar.Business
         PlayerDTO GetPlayerByKeys(UserDTO UserDTP, SessionDTO SessionDTP);
         int Fire(int playerId, ShotDTO shot);
         int UpdateShip(int playerId, int shipId, ShipDTO shipDto);
+
+        List<ShipDTO> GetShips(int playerId);
     }
 }

@@ -130,7 +130,15 @@ namespace NavalWar.Business
                 _shipRepository.UpdateShip(ship);
                 result = 0;
             }
+
             return result;
+        }
+
+        public List<ShipDTO> GetShips(int playerId)
+        {
+            Player player = _playerRepository.GetPlayerById(playerId);
+            PlayerDTO playerDTO = player.ToDTO();
+            return playerDTO.Ships;
         }
 
     }

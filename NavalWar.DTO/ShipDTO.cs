@@ -8,10 +8,11 @@
         public int Y { get; set; }
         public int Size { get; set; }
         public bool isVertical { get; set; }
+        public string Name { get; set; }
 
 
 
-        public ShipDTO(int? id, int pv, int x, int y, int size, bool isvertical)
+        public ShipDTO(int? id, int pv, int x, int y, int size, bool isvertical, string name)
         {
             ID = id;
             PV = pv;
@@ -19,6 +20,7 @@
             Y = y;
             Size = size;
             isVertical = isvertical;
+            Name = name;
         }
     }
 }
