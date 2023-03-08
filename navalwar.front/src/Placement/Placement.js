@@ -183,7 +183,7 @@ export const Placement = () => {
                     <button id="button" onClick={() => handleRotateShip()}>Rotate Ship</button>
                     <button id="button" onClick={() => handleRemoveShip()}>Remove Ship</button>
                     <Link to={allShipsPlaced(ships) ? '/game' : '#'} >
-                        <button id="button" onClick={() => console.log("game") }>C'est parti !</button>
+                        <button id="button" enabled={allShipsPlaced(ships)} onClick={() => saveBoats() }>C'est parti !</button>
                     </Link>
                 </div>
             </div>
