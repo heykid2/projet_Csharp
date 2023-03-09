@@ -1,18 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 export const Session = () => {
 
     //get sessions libres
-    const [sessions, setSessions] = useState([
-        { id: 1, name: 'Session 1' },
-        { id: 2, name: 'Session 2' },
-        { id: 3, name: 'Session 3' },
-    ]);
+    const [sessions, setSessions] = useState([]);
+    useEffect(() => {
+        fetch('https://localhost:3000/api/Session/available').then(response => response.json()).then(json => setSessions(json));
+    }, []);
+
     const [selectedSession, setSelectedSession] = useState(null);
     const [newSessionName, setNewSessionName] = useState('');
 
+    let player;
+
     const handleSessionClick = (session) => {
-        setSelectedSession(session);
+        session.player2Id = player.id;
+        session.status = 1;
+        fetch('https://localhost:3000/api/Session', {
+            method: 'PUT',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(session)
+        });
+
+        //redirection placement
     };
 
     const handleNewSessionChange = (event) => {
@@ -23,9 +36,23 @@ export const Session = () => {
         event.preventDefault();
         const newSession = {
             id: sessions.length + 1,
-            name: newSessionName,
+            player1Id: player.Id,
+            player2Id: undefined,
+            winnerPlayerId: undefined,
+            status: 0
         };
-        setSessions([...sessions, newSession]);
+
+        fetch('https://localhost:3000/api/Session', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(newSession)
+        });
+
+        console.log("Session créée");
+
         setSelectedSession(newSession);
         setNewSessionName('');
     };

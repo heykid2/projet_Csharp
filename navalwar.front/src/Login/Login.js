@@ -47,12 +47,6 @@ export const Login = () => {
         if (response.ok === true) {
             console.log("player cree");
 
-            session = fetch('https://localhost:3000/api/session/available', {
-                headers: {
-                    'Accept': 'application/json'
-                }
-            });
-
             if (session === null) {
                 session = {
                     id: Math.ceil(Math.random() * 10000),
@@ -61,15 +55,6 @@ export const Login = () => {
                     winnerPlayerId: undefined,
                     status: 0
                 };
-
-                fetch('https://localhost:3000/api/session/available', {
-                    method: 'POST',
-                    headers: {
-                        'Accept': 'application/json',
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(session)
-                });
 
                 console.log("en attente");
             }

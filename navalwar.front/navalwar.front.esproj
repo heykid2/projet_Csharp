@@ -14,5 +14,6 @@
   <ItemGroup>
     <Folder Include="src\Login\" />
     <Folder Include="src\Game\" />
+    <Folder Include="src\Session\" />
   </ItemGroup>
 </Project>
