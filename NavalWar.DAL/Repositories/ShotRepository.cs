@@ -20,6 +20,7 @@ namespace NavalWar.DAL.Repositories
         public void InsertShot(Shot shot)
         {
             _context.Shots.Add(shot);
+            Save();
         }
 
         public void Save()

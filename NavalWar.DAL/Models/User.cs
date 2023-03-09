@@ -7,11 +7,12 @@ namespace NavalWar.DAL.Models
         [Key]
         public string? Name { get; set; }
 
-        public List<Player>? Players { get; set; }
+        public List<Player> Players { get; set; }
 
         public User(string? name)
         {
             Name = name;
+            Players = new();
         }
     }
 }

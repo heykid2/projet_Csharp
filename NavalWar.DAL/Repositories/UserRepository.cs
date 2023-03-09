@@ -41,7 +41,8 @@ namespace NavalWar.DAL.Repositories
 
         public void UpdateUser(User user)
         {
-            _context.Entry(user).State = EntityState.Modified;
+            _context.Update(user);
+            Save();
         }
 
         public void Save()

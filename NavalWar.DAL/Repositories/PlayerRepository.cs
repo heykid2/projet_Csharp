@@ -34,9 +34,10 @@ namespace NavalWar.DAL.Repositories
             //_context.Players.Remove(Player);
         }
 
-        public void UpdatePlayer(Player Player)
+        public void UpdatePlayer(Player player)
         {
-            //_context.Entry(Player).State = EntityState.Modified;
+            _context.Update(player);
+            Save();
         }
 
         public void Save()

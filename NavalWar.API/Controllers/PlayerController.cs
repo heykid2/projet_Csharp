@@ -41,6 +41,14 @@ namespace NavalWar.API.Controllers
             return Ok(_playerService.UpdateShip(playerId, shipId, ship));
         }
 
+        // PUT: api/<PlayerController>/{player}/ready
+        [HttpPut("{playerId}/ready")]
+        public IActionResult PlayerReady([FromRoute] int playerId)
+        {
+            _playerService.Ready(playerId);
+            return Ok();
+        }
+
 
 
 

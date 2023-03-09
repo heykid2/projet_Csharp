@@ -42,29 +42,34 @@ namespace NavalWar.DAL.Repositories
                     }
                 }
             }
+
+            Save();
             
             return sessions;
         }
 
         public int InsertSession(Session session)
         {
-            object obj = _context.Sessions.Add(session);
-            Type sessionType = obj.GetType();
-            sessionType.GetProperties()[0].GetValue(obj, null);
-            int sessionId = _context.SaveChanges();
-            return sessionId;
+            _context.Sessions.Add(session);
+            Save();
+            return session.SessionId ?? -1;
         }
 
         public void DeleteSession(int id)
         {
             Session session = _context.Sessions.Find(id);
             _context.Sessions.Remove(session);
-            _context.SaveChanges();
+            Save();
         }
 
         public void UpdateSession(Session session)
         {
             _context.Sessions.Update(session);
+            Save();
+        }
+
+        public void Save()
+        {
             _context.SaveChanges();
         }
     }

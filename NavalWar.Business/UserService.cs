@@ -17,7 +17,7 @@ namespace NavalWar.Business
         public bool AddUser(UserDTO user)
         {
             bool result = false;
-            User? existantUser = _userRepository.GetUserByUsername(user.UserName);
+            User? existantUser = _userRepository.GetUserByUsername(user.Name);
             if (existantUser == null)
             {
                 _userRepository.InsertUser(user.ToModel());
@@ -35,7 +35,7 @@ namespace NavalWar.Business
         public UserDTO GetUserByUsername(string username)
         {
             User user = _userRepository.GetUserByUsername(username);
-            UserDTO userDTO = (user == null) ? new(null) : user.ToDTO();
+            UserDTO userDTO = (user == null) ? new(null, null) : user.ToDTO();
             return userDTO;
         }
     }

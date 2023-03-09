@@ -133,5 +133,35 @@ namespace NavalWar.Business
             return result;
         }
 
+        public void Ready(int playerId)
+        {
+            Player player = _playerRepository.GetPlayerById(playerId);
+
+            player.IsReady = true;
+            _playerRepository.UpdatePlayer(player);
+        }
+
+        public int GetPlayerIdByKeys(UserDTO user, int sessionId)
+        {
+            int result = -1;
+
+            Session sessionModel = _sessionRepository.GetSessionById(sessionId);
+            if (sessionModel != null)
+            {
+                Player player1 = _playerRepository.GetPlayerById(sessionModel.Player1Id);
+
+                if (player1.User.Name == user.Name)
+                {
+                    result = sessionModel.Player1Id ?? -1;
+                }
+                else
+                {
+                    result = sessionModel.Player2Id ?? -1;
+                }
+            }
+            
+            return result;
+        }
+
     }
 }

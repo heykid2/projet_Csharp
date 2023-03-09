@@ -23,7 +23,7 @@ namespace NavalWar.Business
 
         public SessionDTO GetSessionById(int id)
         {
-            Session session = (Session)_sessionRepository.GetSessionById(id);
+            Session session = _sessionRepository.GetSessionById(id);
             return session.ToDTO();
         }
 
