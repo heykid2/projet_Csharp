@@ -16,11 +16,13 @@ export const Placement = () => {
         ['O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O', 'O']
     ]);
 
-    //TODO: trouver un moyen de mettre le player + de le passer dans l'api
     const [ships, setShips] = useState([]);
 
+    //mettre le playeren context ?
+    let player;
+
     useEffect(() => {
-        fetch('https://localhost:3000/api/{player.Id}/ships').then(response => response.json()).then(json => setShips(json));
+        fetch('https://localhost:3000/api/'+player.Id+'/ships').then(response => response.json()).then(json => setShips(json));
     }, []);
 
 
@@ -129,7 +131,7 @@ export const Placement = () => {
         if (allShipsPlaced(ships) === true) {
             for (let i = 0; i < ships.length; ++i) {
                 let ship = ships[i];
-                fetch('https://localhost:3000/api/{player.id}/ship/{ships[i].id}', {
+                fetch('https://localhost:3000/api/'+player.id+'/ship/'+ships[i].id, {
                     method: 'PUT',
                     headers: {
                         'Accept': 'application/json',
