@@ -15,14 +15,17 @@ namespace NavalWar.DTO
 
         public SessionStatus? Status { get; set; }
 
+        public int? CurrentPlayer { get; set; }
 
-        public SessionDTO(int? sessionId, int? player1Id, int? player2Id, int? winnerPlayerId, SessionStatus? status)
+
+        public SessionDTO(int? sessionId, int? player1Id, int? player2Id, int? winnerPlayerId, SessionStatus? status, int? currentPlayer)
         {
             SessionId = sessionId;
             Player1Id = player1Id;
             Player2Id = player2Id;
             WinnerPlayerId = winnerPlayerId;
             Status = status ?? SessionStatus.Waiting;
+            CurrentPlayer = currentPlayer;
         }
     }
 }

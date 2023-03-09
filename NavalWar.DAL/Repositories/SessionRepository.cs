@@ -23,27 +23,53 @@ namespace NavalWar.DAL.Repositories
             return _context.Sessions.Find(id);
         }
 
-        public Session GetUserSession(int userId, int sessionId)
+        public IEnumerable<Session> GetSessionsByUser(string userName)
         {
-            return null;//_context.Sessions.Find();
+            List<Session> sessions = new();
+            
+            if (userName != null)
+            {
+                User user = _context.Users.Find(userName);
+            
+                IEnumerable<Player> players = user.Players;
+
+                if (players != null)
+                {
+                    
+                    foreach (Player player in players)
+                    {
+                        sessions.Add(player.Session);
+                    }
+                }
+            }
+
+            Save();
+            
+            return sessions;
         }
 
-        public void InsertSession(Session session)
+        public int InsertSession(Session session)
         {
             _context.Sessions.Add(session);
-            _context.SaveChanges();
+            Save();
+            return session.SessionId ?? -1;
         }
 
         public void DeleteSession(int id)
         {
             Session session = _context.Sessions.Find(id);
             _context.Sessions.Remove(session);
-            _context.SaveChanges();
+            Save();
         }
 
         public void UpdateSession(Session session)
         {
             _context.Sessions.Update(session);
+            Save();
+        }
+
+        public void Save()
+        {
             _context.SaveChanges();
         }
     }

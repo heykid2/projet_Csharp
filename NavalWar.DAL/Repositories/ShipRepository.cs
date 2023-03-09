@@ -15,20 +15,20 @@ namespace NavalWar.DAL.Repositories
         public void InsertShip(Ship ship)
         {
             _context.Ships.Add(ship);
-            _context.SaveChanges();
+            Save();
         }
 
         public void UpdateShip(Ship ship)
         {
             _context.Ships.Update(ship);
-            _context.SaveChanges();
+            Save();
         }
 
         public void DeleteShip(int id)
         {
             Ship ship = _context.Ships.Find(id);
             _context.Ships.Remove(ship);
-            _context.SaveChanges();
+            Save();
         }
 
         public Ship GetShipById(int id)
@@ -39,6 +39,11 @@ namespace NavalWar.DAL.Repositories
         public IEnumerable<Ship> GetShips()
         {
             return _context.Ships.ToList();
+        }
+
+        public void Save()
+        {
+            _context.SaveChanges();
         }
     }
 }

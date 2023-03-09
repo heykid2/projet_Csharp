@@ -35,7 +35,8 @@ namespace NavalWar.Business
         public UserDTO GetUserByUsername(string username)
         {
             User user = _userRepository.GetUserByUsername(username);
-            return user.ToDTO();
+            UserDTO userDTO = (user == null) ? new(null, null) : user.ToDTO();
+            return userDTO;
         }
     }
 }

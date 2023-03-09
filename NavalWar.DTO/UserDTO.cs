@@ -2,11 +2,14 @@
 {
     public class UserDTO
     {
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
-        public UserDTO(string name)
+        public List<PlayerDTO> Players { get; set; }
+
+        public UserDTO(string? name, List<PlayerDTO> players)
         {
             Name = name;
+            Players = players;
         }
     }
 }

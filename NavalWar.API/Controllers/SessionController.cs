@@ -47,19 +47,19 @@ namespace NavalWar.API.Controllers
             return Ok(_sessionService.GetSessionStatus(id));
         }
 
-        [HttpGet("sessions/{userId}/sessions/{sessionId}")]
+        [HttpGet("user/{userName}")]
         [EnableCors("Policy")]
-        public IActionResult GetUserSession(int userId, int sessionId)
+        public IActionResult GetUserSessions(string userName)
         {
-            return Ok(_sessionService.GetUserSession(userId, sessionId));
+            return Ok(_sessionService.GetUserSessions(userName));
         }
 
         // POST api/<GameAreaController>
         [HttpPost]
         [EnableCors("Policy")]
-        public void PostSession([FromBody] SessionDTO session)
+        public IActionResult PostSession([FromBody] SessionDTO session)
         {
-            _sessionService.AddSession(session);
+            return Ok(_sessionService.AddSession(session));
         }
 
         // PUT api/<GameAreaController>/5
@@ -71,7 +71,7 @@ namespace NavalWar.API.Controllers
         }
 
         // DELETE api/<GameAreaController>/5
-        [HttpDelete("sessions/{session}")]
+        [HttpDelete("{session}")]
         [EnableCors("Policy")]
         public void Delete(int session)
         {

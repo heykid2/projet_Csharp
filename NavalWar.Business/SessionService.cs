@@ -23,7 +23,7 @@ namespace NavalWar.Business
 
         public SessionDTO GetSessionById(int id)
         {
-            Session session = (Session)_sessionRepository.GetSessionById(id);
+            Session session = _sessionRepository.GetSessionById(id);
             return session.ToDTO();
         }
 
@@ -33,15 +33,22 @@ namespace NavalWar.Business
             return session.Status;
         }
 
-        public SessionDTO GetUserSession(int userId, int sessionId)
+        public IEnumerable<SessionDTO> GetUserSessions(string userName)
         {
-            Session session = (Session)_sessionRepository.GetUserSession(userId, sessionId);
-            return session.ToDTO();
+            IEnumerable<Session> sessions = _sessionRepository.GetSessionsByUser(userName);
+            List<SessionDTO> sessionsDTO = new();
+
+            foreach (Session session in sessions)
+            {
+                sessionsDTO.Add(session.ToDTO());
+            }
+
+            return sessionsDTO;
         }
 
-        public void AddSession(SessionDTO session)
+        public int AddSession(SessionDTO session)
         {
-            _sessionRepository.InsertSession(session.ToModel());
+            return _sessionRepository.InsertSession(session.ToModel());
         }
 
         public void UpdateSession(SessionDTO session)

@@ -60,7 +60,7 @@ namespace NavalWar.Business
                     int ship_begin_x = ship.X;
                     int ship_begin_y = ship.Y;
                     
-                    if (ship.isVertical)
+                    if (ship.IsVertical)
                     {
                         if (shot.X == ship_begin_x && shot.Y >= ship_begin_y && shot.Y < ship_begin_y + ship.Size)
                         {
@@ -121,15 +121,45 @@ namespace NavalWar.Business
         {
             int result = -1; // -1 = erreur, 0 = ok
             Player player = _playerRepository.GetPlayerById(playerId);
-            Ship? ship = player.Ships.Where(s => s.ID == shipId).FirstOrDefault();
+            Ship? ship = player.Ships.Where(s => s.ShipId == shipId).FirstOrDefault();
             if (ship != null)
             {
                 ship.X = shipDto.X;
                 ship.Y = shipDto.Y;
-                ship.isVertical = shipDto.isVertical;
+                ship.IsVertical = shipDto.IsVertical;
                 _shipRepository.UpdateShip(ship);
                 result = 0;
             }
+            return result;
+        }
+
+        public void Ready(int playerId)
+        {
+            Player player = _playerRepository.GetPlayerById(playerId);
+
+            player.IsReady = true;
+            _playerRepository.UpdatePlayer(player);
+        }
+
+        public int GetPlayerIdByKeys(UserDTO user, int sessionId)
+        {
+            int result = -1;
+
+            Session sessionModel = _sessionRepository.GetSessionById(sessionId);
+            if (sessionModel != null)
+            {
+                Player player1 = _playerRepository.GetPlayerById(sessionModel.Player1Id);
+
+                if (player1.User.Name == user.Name)
+                {
+                    result = sessionModel.Player1Id ?? -1;
+                }
+                else
+                {
+                    result = sessionModel.Player2Id ?? -1;
+                }
+            }
+            
             return result;
         }
 

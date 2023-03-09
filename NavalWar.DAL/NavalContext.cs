@@ -34,6 +34,14 @@ namespace NavalWar.DAL
                 .HasMany(p => p.Ships)
                 ;
 
+            modelBuilder.Entity<Player>()
+                .HasOne(p => p.Session)
+                ;
+
+            modelBuilder.Entity<Player>()
+                .HasMany(p => p.Shots)
+                ;
+
             modelBuilder.Entity<Shot>()
                 .ToTable("Shot")
                 ;
