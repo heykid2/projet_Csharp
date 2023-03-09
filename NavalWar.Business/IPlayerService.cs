@@ -4,7 +4,7 @@ namespace NavalWar.Business
 {
     public interface IPlayerService
     {
-        void AddPlayer(PlayerDTO user);
+        int AddPlayer(PlayerDTO user);
         List<PlayerDTO> GetPlayers();
         PlayerDTO GetPlayerByKeys(UserDTO UserDTP, SessionDTO SessionDTP);
         int Fire(int playerId, ShotDTO shot);

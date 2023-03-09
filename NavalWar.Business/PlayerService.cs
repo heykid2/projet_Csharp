@@ -26,9 +26,9 @@ namespace NavalWar.Business
             return players.Select(p => p.ToDTO()).ToList();
         }
 
-        public void AddPlayer(PlayerDTO player)
+        public int AddPlayer(PlayerDTO player)
         {
-            _playerRepository.InsertPlayer(player.ToModel());
+            return _playerRepository.InsertPlayer(player.ToModel());
         }
         //TODO :
         public PlayerDTO GetPlayerByKeys(UserDTO UserDTP, SessionDTO SessionDTP)

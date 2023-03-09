@@ -33,6 +33,13 @@ namespace NavalWar.API.Controllers
             return Ok(result);
         }
 
+        // POST: api/<PlayerController>
+        [HttpPost]
+        public IActionResult Post([FromBody] PlayerDTO player)
+        {
+            return Ok(_playerService.AddPlayer(player));
+        }
+
         // PUT: api/<PlayerController>/{user}/{session}/ship	
         [HttpPut("{playerId}/ship/{shipId}")]
         public IActionResult Put([FromRoute] int playerId, [FromRoute] int shipId,

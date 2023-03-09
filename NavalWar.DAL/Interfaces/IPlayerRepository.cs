@@ -6,7 +6,7 @@ namespace NavalWar.DAL.Interfaces
     {
         public IEnumerable<Player> GetPlayers();
         public Player GetPlayerById(int? id);
-        public void InsertPlayer(Player player);
+        public int InsertPlayer(Player player);
         public void DeletePlayer(int id);
         public void UpdatePlayer(Player player);
         public void Save();
