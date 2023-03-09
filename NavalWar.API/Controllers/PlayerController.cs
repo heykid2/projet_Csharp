@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using NavalWar.Business;
 using NavalWar.DAL.Interfaces;
 using NavalWar.DTO;
@@ -17,6 +18,7 @@ namespace NavalWar.API.Controllers
 
         // GET: api/<PlayerController>
         [HttpGet]
+        [EnableCors("Policy")]
         public IActionResult GetPlayers()
         {
             return Ok(_playerService.GetPlayers());
@@ -25,6 +27,7 @@ namespace NavalWar.API.Controllers
 
         // POST: api/<PlayerController>/5/fire	
         [HttpPost("{playerId}/fire")]
+        [EnableCors("Policy")]
         public IActionResult Post([FromRoute] int playerId, [FromBody] ShotDTO shot)
         {
             int result = _playerService.Fire(playerId, shot); 
@@ -35,6 +38,7 @@ namespace NavalWar.API.Controllers
 
         // PUT: api/<PlayerController>/{user}/{session}/ship	
         [HttpPut("{playerId}/ship/{shipId}")]
+        [EnableCors("Policy")]
         public IActionResult Put([FromRoute] int playerId, [FromRoute] int shipId,
                                     [FromBody] ShipDTO ship)
         {

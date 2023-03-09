@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using NavalWar.DAL.Interfaces;
 using NavalWar.DTO;
 
@@ -19,6 +20,7 @@ namespace NavalWar.API.Controllers
 
         // GET: api/<UserController>
         [HttpGet]
+        [EnableCors("Policy")]
         public IActionResult Get()
         {
             return Ok(_userService.GetUsers());
@@ -26,6 +28,7 @@ namespace NavalWar.API.Controllers
 
         // GET api/<UserController>/wololo
         [HttpGet("{username}")]
+        [EnableCors("Policy")]
         public IActionResult Get(string username)
         {
             return Ok(_userService.GetUserByUsername(username));
@@ -33,6 +36,7 @@ namespace NavalWar.API.Controllers
 
         // POST api/<UserController>
         [HttpPost]
+        [EnableCors("Policy")]
         public IActionResult Post([FromBody] UserDTO userDTO)
         {
             return (_userService.AddUser(userDTO)) ? Ok("Le User a bien été créé.") : BadRequest("Le User existe déjà.");
