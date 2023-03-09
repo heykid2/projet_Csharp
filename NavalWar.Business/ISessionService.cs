@@ -14,7 +14,7 @@ namespace NavalWar.DAL.Interfaces
 
         IEnumerable<SessionDTO> GetUserSessions(string userName);
 
-        void AddSession(SessionDTO session);
+        int AddSession(SessionDTO session);
 
         void UpdateSession(SessionDTO session);
 

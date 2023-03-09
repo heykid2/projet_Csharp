@@ -46,10 +46,13 @@ namespace NavalWar.DAL.Repositories
             return sessions;
         }
 
-        public void InsertSession(Session session)
+        public int InsertSession(Session session)
         {
-            _context.Sessions.Add(session);
-            _context.SaveChanges();
+            object obj = _context.Sessions.Add(session);
+            Type sessionType = obj.GetType();
+            sessionType.GetProperties()[0].GetValue(obj, null);
+            int sessionId = _context.SaveChanges();
+            return sessionId;
         }
 
         public void DeleteSession(int id)

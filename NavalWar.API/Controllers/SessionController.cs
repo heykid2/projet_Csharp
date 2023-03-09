@@ -51,9 +51,9 @@ namespace NavalWar.API.Controllers
 
         // POST api/<GameAreaController>
         [HttpPost]
-        public void PostSession([FromBody] SessionDTO session)
+        public IActionResult PostSession([FromBody] SessionDTO session)
         {
-            _sessionService.AddSession(session);
+            return Ok(_sessionService.AddSession(session));
         }
 
         // PUT api/<GameAreaController>/5

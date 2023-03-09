@@ -46,9 +46,9 @@ namespace NavalWar.Business
             return sessionsDTO;
         }
 
-        public void AddSession(SessionDTO session)
+        public int AddSession(SessionDTO session)
         {
-            _sessionRepository.InsertSession(session.ToModel());
+            return _sessionRepository.InsertSession(session.ToModel());
         }
 
         public void UpdateSession(SessionDTO session)
