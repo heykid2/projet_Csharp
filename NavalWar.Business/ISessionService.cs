@@ -12,7 +12,7 @@ namespace NavalWar.DAL.Interfaces
 
         SessionStatus? GetSessionStatus(int id);
 
-        SessionDTO GetUserSession(int userId, int sessionId);
+        IEnumerable<SessionDTO> GetUserSessions(string userName);
 
         void AddSession(SessionDTO session);
 

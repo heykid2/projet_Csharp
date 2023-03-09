@@ -43,10 +43,10 @@ namespace NavalWar.API.Controllers
             return Ok(_sessionService.GetSessionStatus(id));
         }
 
-        [HttpGet("sessions/{userId}/sessions/{sessionId}")]
-        public IActionResult GetUserSession(int userId, int sessionId)
+        [HttpGet("user/{userName}")]
+        public IActionResult GetUserSessions(string userName)
         {
-            return Ok(_sessionService.GetUserSession(userId, sessionId));
+            return Ok(_sessionService.GetUserSessions(userName));
         }
 
         // POST api/<GameAreaController>
@@ -64,7 +64,7 @@ namespace NavalWar.API.Controllers
         }
 
         // DELETE api/<GameAreaController>/5
-        [HttpDelete("sessions/{session}")]
+        [HttpDelete("{session}")]
         public void Delete(int session)
         {
             _sessionService.DeleteSession(session);

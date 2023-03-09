@@ -60,7 +60,7 @@ namespace NavalWar.Business
                     int ship_begin_x = ship.X;
                     int ship_begin_y = ship.Y;
                     
-                    if (ship.isVertical)
+                    if (ship.IsVertical)
                     {
                         if (shot.X == ship_begin_x && shot.Y >= ship_begin_y && shot.Y < ship_begin_y + ship.Size)
                         {
@@ -121,12 +121,12 @@ namespace NavalWar.Business
         {
             int result = -1; // -1 = erreur, 0 = ok
             Player player = _playerRepository.GetPlayerById(playerId);
-            Ship? ship = player.Ships.Where(s => s.ID == shipId).FirstOrDefault();
+            Ship? ship = player.Ships.Where(s => s.ShipId == shipId).FirstOrDefault();
             if (ship != null)
             {
                 ship.X = shipDto.X;
                 ship.Y = shipDto.Y;
-                ship.isVertical = shipDto.isVertical;
+                ship.IsVertical = shipDto.IsVertical;
                 _shipRepository.UpdateShip(ship);
                 result = 0;
             }

@@ -33,10 +33,17 @@ namespace NavalWar.Business
             return session.Status;
         }
 
-        public SessionDTO GetUserSession(int userId, int sessionId)
+        public IEnumerable<SessionDTO> GetUserSessions(string userName)
         {
-            Session session = (Session)_sessionRepository.GetUserSession(userId, sessionId);
-            return session.ToDTO();
+            IEnumerable<Session> sessions = _sessionRepository.GetSessionsByUser(userName);
+            List<SessionDTO> sessionsDTO = new();
+
+            foreach (Session session in sessions)
+            {
+                sessionsDTO.Add(session.ToDTO());
+            }
+
+            return sessionsDTO;
         }
 
         public void AddSession(SessionDTO session)

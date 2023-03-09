@@ -12,7 +12,7 @@ namespace NavalWar.DAL.ExtensionMethods
 
         public static User ToModel(this UserDTO user)
         {
-            return new User(user.Name);
+            return new User(user.UserName);
         }
         public static SessionDTO ToDTO(this Session session)
         {
@@ -45,14 +45,14 @@ namespace NavalWar.DAL.ExtensionMethods
             return new Shot(shot.ID, shot.X, shot.Y, shot.Hit);
         }
 
-        public static AircraftCarrierDTO ToDTO(this AircraftCarrier aircraftCarrier)
+        public static ShipDTO ToDTO(this Ship ship)
         {
-            return new AircraftCarrierDTO(aircraftCarrier.ID, aircraftCarrier.PV, aircraftCarrier.X, aircraftCarrier.Y, aircraftCarrier.Size, aircraftCarrier.isVertical);
+            return new ShipDTO(ship.ShipId, ship.PV, ship.X, ship.Y, ship.Size, ship.IsVertical, ship.Name);
         }
         
-        public static AircraftCarrier ToModel(this AircraftCarrierDTO aircraftCarrier)
+        public static Ship ToModel(this ShipDTO ship)
         {
-            return new AircraftCarrier(aircraftCarrier.ID, aircraftCarrier.X, aircraftCarrier.Y, aircraftCarrier.PV, aircraftCarrier.isVertical);
+            return new Ship(ship.ShipId, ship.PV, ship.X, ship.Y, ship.Size, ship.IsVertical, ship.Name);
         }
 
         // faire les autres

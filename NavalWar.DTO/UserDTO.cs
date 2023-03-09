@@ -2,11 +2,11 @@
 {
     public class UserDTO
     {
-        public string Name { get; set; }
+        public string? UserName { get; set; }
 
-        public UserDTO(string name)
+        public UserDTO(string? userName)
         {
-            Name = name;
+            UserName = userName;
         }
     }
 }

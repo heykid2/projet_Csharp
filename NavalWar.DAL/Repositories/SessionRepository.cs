@@ -23,9 +23,27 @@ namespace NavalWar.DAL.Repositories
             return _context.Sessions.Find(id);
         }
 
-        public Session GetUserSession(int userId, int sessionId)
+        public IEnumerable<Session> GetSessionsByUser(string userName)
         {
-            return null;//_context.Sessions.Find();
+            List<Session> sessions = new();
+            
+            if (userName != null)
+            {
+                User user = _context.Users.Find(userName);
+            
+                IEnumerable<Player> players = user.Players;
+
+                if (players != null)
+                {
+                    
+                    foreach (Player player in players)
+                    {
+                        sessions.Add(player.Session);
+                    }
+                }
+            }
+            
+            return sessions;
         }
 
         public void InsertSession(Session session)
