@@ -16,7 +16,7 @@ namespace NavalWar.API.Controllers
         }
 
         // GET: api/<PlayerController>
-        [HttpGet]
+        [HttpGet("list")]
         public IActionResult GetPlayers()
         {
             return Ok(_playerService.GetPlayers());
